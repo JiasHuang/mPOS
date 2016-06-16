@@ -1,0 +1,47 @@
+<html>
+
+<head>
+
+<title>receipt</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="order.js"></script>
+
+<script type="text/javascript">
+    function PrintOrder() {
+        window.open('print.html', '_blank');
+    }
+    window.onload = ShowAll;
+</script>
+
+</head>
+
+<body>
+
+<div id="CustomerResult"></div>
+<div id="OrderResult"></div>
+
+<hr>
+
+<div id ="OrderEntry" class="btnHolder">
+    <button class="btn" onclick="location.href='index.html'">MENU</button>
+    <button class="btn" onclick="NewOrder()">NEW</button>
+    <button class="btn" onclick="DelOrder()">DEL</button>
+    <button class="btn" onclick="EditOrder()">EDIT</button>
+    <button class="btn" onclick="PrintOrder()">PRINT</button>
+</div>
+
+<div id="OrderEdit" class="btnHolder">
+    <button class="btn" onclick="ShowOrder()">CANCEL</button>
+    <button class="btn" onclick="SaveOrder()">SAVE</button>
+</div>
+
+<input type="hidden" id="OrderName" />
+<input type="hidden" id="OrderPrice" />
+<input type="hidden" id="OrderQty" />
+<input type="hidden" id="OrderAmount" />
+
+</body>
+</html>

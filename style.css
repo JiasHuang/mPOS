@@ -1,0 +1,65 @@
+
+table {
+    //height: 80%;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+tr:hover {background-color: #ddd;}
+
+tr.selected {
+    border: 2px solid blue;
+    background-color: #FFCF8B;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+    font-size:32px;
+}
+
+td {
+    font-size:32px;
+}
+
+.btnHolder {
+    text-align: center;
+    margin: 0px auto;
+}
+
+.btn {
+    background-color: #4682B4;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 64px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input {
+    width: 100%;
+    font-size: 32px;
+}
+
+select {
+    width: 100%;
+    font-size: 32px;
+}
+
+.total {
+    text-align: right;
+    padding: 8px;
+}

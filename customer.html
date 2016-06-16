@@ -1,0 +1,40 @@
+<html>
+
+<head>
+
+<title>receipt</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="customer.js"></script>
+
+<script type="text/javascript">
+    window.onload = ShowCustomer;
+</script>
+
+</head>
+
+<body>
+
+<div id="CustomerResult"></div>
+
+<hr>
+
+<div id ="CustomerEntry" class="btnHolder">
+    <button class="btn" onclick="location.href='index.html'">MENU</button>
+    <button class="btn" onclick="NewCustomer()">NEW</button>
+    <button class="btn" onclick="DelCustomer()">DEL</button>
+    <button class="btn" onclick="EditCustomer()">EDIT</button>
+</div>
+
+<div id="CustomerEdit" class="btnHolder">
+    <button class="btn" onclick="ShowCustomer()">CANCEL</button>
+    <button class="btn" onclick="SaveCustomer()">SAVE</button>
+</div>
+
+<input type="hidden" id="CustomerName" />
+<input type="hidden" id="CustomerPhone" />
+
+</body>
+</html>

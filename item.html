@@ -1,0 +1,40 @@
+<html>
+
+<head>
+
+<title>receipt</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="item.js"></script>
+
+<script type="text/javascript">
+    window.onload = ShowItem;
+</script>
+
+</head>
+
+<body>
+
+<div id="ItemResult"></div>
+
+<hr>
+
+<div id ="ItemEntry" class="btnHolder">
+    <button class="btn" onclick="location.href='index.html'">MENU</button>
+    <button class="btn" onclick="NewItem()">NEW</button>
+    <button class="btn" onclick="DelItem()">DEL</button>
+    <button class="btn" onclick="EditItem()">EDIT</button>
+</div>
+
+<div id="ItemEdit" class="btnHolder">
+    <button class="btn" onclick="ShowItem()">CANCEL</button>
+    <button class="btn" onclick="SaveItem()">SAVE</button>
+</div>
+
+<input type="hidden" id="ItemName" />
+<input type="hidden" id="ItemPrice" />
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+
+<head>
+
+<title>receipt</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="company.js"></script>
+
+<script type="text/javascript">
+    window.onload = ShowCompany;
+</script>
+
+</head>
+
+<body>
+
+<div id="CompanyResult"></div>
+
+<hr>
+
+<div id ="CompanyEntry" class="btnHolder">
+    <button class="btn" onclick="location.href='index.html'">MENU</button>
+    <button class="btn" onclick="EditCompany()">EDIT</button>
+</div>
+
+<div id="CompanyEdit" class="btnHolder">
+    <button class="btn" onclick="ShowCompany()">CANCEL</button>
+    <button class="btn" onclick="SaveCompany()">SAVE</button>
+</div>
+
+</body>
+</html>
