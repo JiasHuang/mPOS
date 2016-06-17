@@ -54,7 +54,7 @@ function PrintOrder() {
     text += '<td class=amount>Amount</td>';
     text += '</tr>'
     for (var i = 0; i < sessionStorage.length; i++) {
-        if (sessionStorage.key(i).startsWith(prefix_order) != true)
+        if (sessionStorage.key(i).indexOf(prefix_order) != 0)
             continue;
         var name = sessionStorage.key(i);
         var value = sessionStorage.getItem(name).split(separator);

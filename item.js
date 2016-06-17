@@ -61,7 +61,7 @@ function ShowItem() {
     text += '<thread><tr><th>Name</th><th>Price</th></tr></thread>';
     text += '<tbody>';
     for (var i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i).startsWith(prefix) != true)
+        if (localStorage.key(i).indexOf(prefix) != 0)
             continue;
         var name = localStorage.key(i);
         var price = localStorage.getItem(name);

@@ -55,7 +55,7 @@ function NewOrder() {
     var select = '';
     select += '<select id=NewOrderName onChange=\'LoadPrice()\'>'
     for (var i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i).startsWith(prefix_item) != true)
+        if (localStorage.key(i).indexOf(prefix_item) != 0)
             continue;
         var name = localStorage.key(i);
         var item = name.substring(prefix_item.length);
@@ -100,7 +100,7 @@ function ShowOrder() {
     text += '<thread><tr><th>Name</th><th>Price</th><th>Qty</th><th>Amount</th></tr></thread>';
     text += '<tbody>';
     for (var i = 0; i < sessionStorage.length; i++) {
-        if (sessionStorage.key(i).startsWith(prefix_order) != true)
+        if (sessionStorage.key(i).indexOf(prefix_order) != 0)
             continue;
         var name = sessionStorage.key(i);
         var value = sessionStorage.getItem(name).split(separator);
@@ -140,7 +140,7 @@ function ShowCustomer() {
     var select = '';
     select += '<select id=coCustomer onChange=\'LoadCustomer()\'>';
     for (var i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i).startsWith(prefix_customer) != true)
+        if (localStorage.key(i).indexOf(prefix_customer) != 0)
             continue;
         var name = localStorage.key(i);
         var item = name.substring(prefix_customer.length);
