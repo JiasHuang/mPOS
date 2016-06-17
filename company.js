@@ -1,7 +1,4 @@
 
-const coName = 'coName';
-const coPhone = 'coPhone';
-
 function SaveCompany() {
     localStorage.setItem(coName, document.getElementById('CompanyName').value);
     localStorage.setItem(coPhone, document.getElementById('CompanyPhone').value);

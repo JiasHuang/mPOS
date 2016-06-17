@@ -1,9 +1,4 @@
 
-const separator = 'x';
-const prefix_item = 'it_'
-const prefix_customer = 'co_'
-const prefix_order = 'or_'
-
 function AddOrder() {
     var name = document.getElementById('OrderName').value;
     var price = document.getElementById('OrderPrice').value;
@@ -21,6 +16,13 @@ function DelOrder() {
 }
 
 function SaveOrder() {
+
+    var oldname = document.getElementById('OrderName').value;
+    var newname = document.getElementById('NewOrderName').value;
+    if (oldname != '' && newname != '' && oldname != newname) {
+        sessionStorage.removeItem(prefix_order+oldname);
+    }
+
    document.getElementById('OrderName').value = document.getElementById('NewOrderName').value;
    document.getElementById('OrderPrice').value = document.getElementById('NewOrderPrice').value;
    document.getElementById('OrderQty').value = document.getElementById('NewOrderQty').value;
@@ -28,21 +30,10 @@ function SaveOrder() {
 }
 
 function EditOrder() {
-
-    var text = '';
-    text += '<table>';
-    text += '<tr><th>Item</th><td><input type=text id=NewOrderName \></td></tr>'
-    text += '<tr><th>Each</th><td><input type=text id=NewOrderPrice \></td></tr>'
-    text += '<tr><th>Qty</th><td><input type=text id=NewOrderQty \></td></tr>'
-    text += '</table>';
-
-    document.getElementById('OrderResult').innerHTML=text;
+    NewOrder();
     document.getElementById('NewOrderName').value=document.getElementById('OrderName').value;
     document.getElementById('NewOrderPrice').value=document.getElementById('OrderPrice').value;
     document.getElementById('NewOrderQty').value=document.getElementById('OrderQty').value;
-    $('#CustomerResult').hide();
-    $('#OrderEntry').hide();
-    $('#OrderEdit').show();
 }
 
 function LoadPrice() {
@@ -97,8 +88,7 @@ function ShowOrder() {
 
     var text = '';
     text += '<br><table>';
-    text += '<thread><tr><th>Name</th><th>Price</th><th>Qty</th><th>Amount</th></tr></thread>';
-    text += '<tbody>';
+    text += '<tr><th>Item</th><th>Price</th><th>Qty</th><th class=amount>Amount</th></tr>';
     for (var i = 0; i < sessionStorage.length; i++) {
         if (sessionStorage.key(i).indexOf(prefix_order) != 0)
             continue;
@@ -111,13 +101,11 @@ function ShowOrder() {
         text += '<td>'+name.substring(prefix_order.length)+'</td>';
         text += '<td>'+price+'</td>';
         text += '<td>'+qty+'</td>';
-        text += '<td>'+amount+'</td>';
+        text += '<td class=amount>'+amount+'</td>';
         text += '</tr>';
-
-        total += amount;
         count += 1;
+        total += amount;
     }
-    text += '</tbody>';
     text += '</table>';
 
     text += '<br><table><tr><td class=total>';

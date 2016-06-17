@@ -1,8 +1,4 @@
 
-const separator = 'x';
-const prefix_order = 'or_';
-const prefix_customer = 'co_';
-
 function getDate() {
 
     Number.prototype.padLeft = function(base,chr) {
@@ -27,8 +23,9 @@ function getCustomer() {
     return name + ' (TEL : ' + phone + ')';
 }
 
-function PrintOrder() {
+function ShowPrint() {
 
+    var count = 0;
     var total = 0;
 
     var text = '';
@@ -67,6 +64,7 @@ function PrintOrder() {
         text += '<td class=num>'+qty+'</td>';
         text += '<td class=amount>'+amount+'</td>';
         text += '</tr>';
+        count += 1;
         total += amount;
     }
     text += '</table>';
@@ -74,8 +72,12 @@ function PrintOrder() {
 
     text += '<br>';
     text += '<div class=total>';
-    text += 'Total: '+total;
+    text += ' Item: '+count+' Total: '+total;
     text += '</div>'
 
     document.getElementById('PrintResult').innerHTML=text;
+}
+
+function PrintOrder() {
+    window.open('print.html', '_blank');
 }

@@ -1,22 +1,27 @@
 
-const prefix = 'co_';
-
 function AddCustomer() {
     var name = document.getElementById('CustomerName').value;
     var phone = document.getElementById('CustomerPhone').value;
     if (name != '' && phone != '') {
-        localStorage.setItem(prefix+name, phone);
+        localStorage.setItem(prefix_customer+name, phone);
         ShowCustomer();
     }
 }
 
 function DelCustomer() {
     var name = document.getElementById('CustomerName').value;
-    localStorage.removeItem(prefix+name);
+    localStorage.removeItem(prefix_customer+name);
     ShowCustomer();
 }
 
 function SaveCustomer() {
+
+    var oldname = document.getElementById('CustomerName').value;
+    var newname = document.getElementById('NewCustomerName').value;
+    if (oldname != '' && newname != '' && oldname != newname) {
+        localStorage.removeItem(prefix_customer+oldname);
+    }
+
    document.getElementById('CustomerName').value = document.getElementById('NewCustomerName').value;
    document.getElementById('CustomerPhone').value = document.getElementById('NewCustomerPhone').value;
    AddCustomer();
@@ -54,19 +59,17 @@ function ShowCustomer() {
 
     var text = '';
     text += '<table>';
-    text += '<thread><tr><th>Name</th><th>Phone</th></tr></thread>';
-    text += '<tbody>';
+    text += '<tr><th>Name</th><th>Phone</th></tr>';
     for (var i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i).indexOf(prefix) != 0)
+        if (localStorage.key(i).indexOf(prefix_customer) != 0)
             continue;
         var name = localStorage.key(i);
         var phone = localStorage.getItem(name);
         text += '<tr onclick=SelectCustomer(this)>';
-        text += '<td>'+name.substring(prefix.length)+'</td>';
+        text += '<td>'+name.substring(prefix_customer.length)+'</td>';
         text += '<td>'+phone+'</td>';
         text += '</tr>';
     }
-    text += '</tbody>';
     text += '</table>';
 
     document.getElementById('CustomerResult').innerHTML=text;
