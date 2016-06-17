@@ -1,6 +1,5 @@
 
 table {
-    //height: 80%;
     width: 100%;
 }
 
@@ -29,6 +28,12 @@ th {
 
 td {
     font-size:32px;
+}
+
+.btnHolderEntry {
+    width: 80%;
+    text-align: center;
+    margin: 0px auto;
 }
 
 .btnHolder {

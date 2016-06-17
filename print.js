@@ -1,7 +1,7 @@
 
-var separator = 'x';
-var prefix_order = 'or_'
-var prefix_customer = 'co_'
+const separator = 'x';
+const prefix_order = 'or_';
+const prefix_customer = 'co_';
 
 function getDate() {
 
@@ -23,39 +23,36 @@ function getDate() {
 
 function getCustomer() {
     var name = sessionStorage.getItem('coCustomer');
-    return name + ' ' + localStorage.getItem(prefix_customer+name);
+    var phone = localStorage.getItem(prefix_customer+name);
+    return name + ' (TEL : ' + phone + ')';
 }
 
 function PrintOrder() {
-    var text = '';
+
     var total = 0;
 
-    text += '<br><table>';
-    text += '<tr><td class="text-center">';
-    text += '*** ' + localStorage.getItem('coName') + ' ' + localStorage.getItem('coPhone');
-    text += '</td></tr>'
-    text += '</table>';
+    var text = '';
 
-    text += '<br><table>';
-    text += '<tr><td text-align=center>';
-    text += '*** Ordered by ' + getCustomer();
-    text += '</td></tr>'
-    text += '</table>';
+    text += '<div class=company>';
+    text += '<br>' + localStorage.getItem('coName');
+    text += '<br>TEL : ' + localStorage.getItem('coPhone');
+    text += '</div>';
 
-    text += '<br><table>';
-    text += '<tr><td class=text-center>';
-    text += 'Date: ' + getDate();
-    text += '</td></tr>';
-    text += '</table>';
+    text += '<div class=customer>';
+    text += '<br>Ordered by : ' + getCustomer();
+    text += '<br>Date : ' + getDate();
+    text += '</div>';
 
-    text += '<br><table>';
+    text += '<br>Detail<hr>';
+
+    text += '<div>';
+    text += '<table class=detail>';
     text += '<tr>';
-    text += '<td class=text-left>Item</td>';
-    text += '<td class="col-md-1 text-center">Qty</td>';
-    text += '<td class="col-md-1 text-center">Price</td>';
-    text += '<td class=text-right>Total</td>';
+    text += '<td>Item</td>';
+    text += '<td class=num>Price</td>';
+    text += '<td class=num>Qty</td>';
+    text += '<td class=amount>Amount</td>';
     text += '</tr>'
-
     for (var i = 0; i < sessionStorage.length; i++) {
         if (sessionStorage.key(i).startsWith(prefix_order) != true)
             continue;
@@ -65,18 +62,20 @@ function PrintOrder() {
         var qty = value[1];
         var amount = price * qty;
         text += '<tr>';
-        text += '<td class=text-left>'+name.substring(prefix_order.length)+'</td>';
-        text += '<td class="col-md-1 text-center">'+qty+'</td>';
-        text += '<td class="col-md-1 text-center">'+price+'</td>';
-        text += '<td class=text-right>'+amount+'</td>';
+        text += '<td>'+name.substring(prefix_order.length)+'</td>';
+        text += '<td class=num>'+price+'</td>';
+        text += '<td class=num>'+qty+'</td>';
+        text += '<td class=amount>'+amount+'</td>';
         text += '</tr>';
         total += amount;
     }
-    text += '<tr>';
-    text += '<td></td><td></td><td></td>';
-    text += '<td class=text-right>Total: '+total+'</td>';
-    text += '</tr>';
     text += '</table>';
+    text += '</div>';
 
-    document.getElementById("PrintResult").innerHTML=text;
+    text += '<br>';
+    text += '<div class=total>';
+    text += 'Total: '+total;
+    text += '</div>'
+
+    document.getElementById('PrintResult').innerHTML=text;
 }

@@ -1,0 +1,32 @@
+
+.company {
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+.customer {
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+}
+
+.detail {
+    width: 100%;
+}
+
+.num {
+    text-align: center;
+    padding: 8px;
+}
+
+.amount {
+    text-align: right;
+    padding: 8px;
+}
+
+.total {
+    font-weight: bold;
+    text-align: right;
+    padding: 8px;
+}
