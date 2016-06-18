@@ -41,6 +41,17 @@ td {
     margin: 0px auto;
 }
 
+.space {
+    height: 10%;
+}
+
+.menubar {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 90%;
+}
+
 .btn {
     background-color: #4682B4;
     border: none;

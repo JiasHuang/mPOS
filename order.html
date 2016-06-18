@@ -9,10 +9,10 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="common.js"></script>
 <script type="text/javascript" src="order.js"></script>
-<script type="text/javascript" src="print.js"></script>
+<script type="text/javascript" src="record.js"></script>
 
 <script type="text/javascript">
-    window.onload = ShowAll;
+    window.onload = LoadOrder;
 </script>
 
 </head>
@@ -24,17 +24,18 @@
 
 <hr>
 
-<div id ="OrderEntry" class="btnHolder">
+<div class="space"></div>
+<div id ="OrderEntry" class="menubar">
     <button class="btn" onclick="location.href='index.html'">MENU</button>
-    <button class="btn" onclick="NewOrder()">NEW</button>
+    <button class="btn" onclick="EditOrder(false)">ADD</button>
     <button class="btn" onclick="DelOrder()">DEL</button>
-    <button class="btn" onclick="EditOrder()">EDIT</button>
-    <button class="btn" onclick="PrintOrder()">PRINT</button>
+    <button class="btn" onclick="EditOrder(true)">EDIT</button>
+    <button class="btn" onclick="SaveOrder()">SAVE</button>
 </div>
 
 <div id="OrderEdit" class="btnHolder">
     <button class="btn" onclick="ShowOrder()">CANCEL</button>
-    <button class="btn" onclick="SaveOrder()">SAVE</button>
+    <button class="btn" onclick="SaveEdit()">SAVE</button>
 </div>
 
 <input type="hidden" id="OrderName" />

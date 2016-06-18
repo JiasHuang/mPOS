@@ -1,5 +1,5 @@
 
-function AddOrder() {
+function AddSelectedOrder() {
     var name = document.getElementById('OrderName').value;
     var price = document.getElementById('OrderPrice').value;
     var qty = document.getElementById('OrderQty').value;
@@ -15,7 +15,7 @@ function DelOrder() {
     ShowOrder();
 }
 
-function SaveOrder() {
+function SaveEdit() {
 
     var oldname = document.getElementById('OrderName').value;
     var newname = document.getElementById('NewOrderName').value;
@@ -26,14 +26,7 @@ function SaveOrder() {
    document.getElementById('OrderName').value = document.getElementById('NewOrderName').value;
    document.getElementById('OrderPrice').value = document.getElementById('NewOrderPrice').value;
    document.getElementById('OrderQty').value = document.getElementById('NewOrderQty').value;
-   AddOrder();
-}
-
-function EditOrder() {
-    NewOrder();
-    document.getElementById('NewOrderName').value=document.getElementById('OrderName').value;
-    document.getElementById('NewOrderPrice').value=document.getElementById('OrderPrice').value;
-    document.getElementById('NewOrderQty').value=document.getElementById('OrderQty').value;
+   AddSelectedOrder();
 }
 
 function LoadPrice() {
@@ -41,7 +34,13 @@ function LoadPrice() {
     document.getElementById('NewOrderPrice').value = localStorage.getItem(prefix_item+name);
 }
 
-function NewOrder() {
+function EditOrder(selected) {
+
+    if (selected != true) {
+        document.getElementById('OrderName').value = '';
+        document.getElementById('OrderPrice').value = '';
+        document.getElementById('OrderQty').value = '1';
+    }
 
     var select = '';
     select += '<select id=NewOrderName onChange=\'LoadPrice()\'>'
@@ -62,10 +61,10 @@ function NewOrder() {
     text += '</table>';
 
     document.getElementById('OrderResult').innerHTML=text;
-    document.getElementById('NewOrderName').value='';
-    document.getElementById('NewOrderPrice').value='';
-    document.getElementById('NewOrderQty').value='1';
-    
+    document.getElementById('NewOrderName').value = document.getElementById('OrderName').value;
+    document.getElementById('NewOrderPrice').value = document.getElementById('OrderPrice').value;
+    document.getElementById('NewOrderQty').value = document.getElementById('OrderQty').value;
+
     $('#CustomerResult').hide();
     $('#OrderEntry').hide();
     $('#OrderEdit').show();
@@ -146,8 +145,74 @@ function ShowCustomer() {
     document.getElementById('coCustomer').value = sessionStorage.getItem('coCustomer');
 }
 
-function ShowAll() {
+function GenRecordObj() {
+
+    var obj = new Object;
+    var order = new Object;
+    var total = 0;
+    var count = 0;
+
+    for (var i = 0; i < sessionStorage.length; i++) {
+        if (sessionStorage.key(i).indexOf(prefix_order) != 0)
+            continue;
+        var name = sessionStorage.key(i);
+        var value = sessionStorage.getItem(name);
+        var price = value.split(separator)[0];
+        var qty = value.split(separator)[1];
+
+        order[name.substring(prefix_order.length)] = value;
+
+        count += 1;
+        total += price * qty;
+    }
+
+    obj['customer'] = sessionStorage.getItem('coCustomer');;
+    obj['date'] = getDateFormat();
+    obj['count'] = count;
+    obj['total'] = total;
+    obj['order'] = order;
+
+    return obj;
+}
+
+function ResetOrder() {
+
+    var list = [];
+
+    for (var i = 0; i < sessionStorage.length; i++)
+        list.push(sessionStorage.key(i));
+
+    for (var i = 0; i < list.length; i++)
+        sessionStorage.removeItem(list[i]);
+
+    document.getElementById('coCustomer').value = '';
+}
+
+function SaveOrder_pass3(id) {
+
+    var obj = GenRecordObj();
+    ResetOrder();
+
+    var text = '';
+    text += '<h1>Saved Successfully</h1>';
+    text += '<h1>';
+    text += ' [RecordID] ' + id;
+    text += ' [Customer] ' + obj['customer'];
+    text += ' [Total] ' + obj['total'];
+    text += ' <a target="_blank" href=print.html?id='+id+'>[PRINT]</a>';
+    text += '</h1>';
+    document.getElementById('OrderResult').innerHTML = text;
+}
+
+function SaveOrder_pass2() {
+    AddRecord(GenRecordObj(), SaveOrder_pass3);
+}
+
+function SaveOrder() {
+    InitRecordDB(SaveOrder_pass2);
+}
+
+function LoadOrder() {
     ShowCustomer();
     ShowOrder();
 }
-

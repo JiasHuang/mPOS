@@ -1,43 +1,23 @@
 
-function getDate() {
+function ShowPrint_ProcObj(obj) {
 
-    Number.prototype.padLeft = function(base,chr) {
-        var len = (String(base || 10).length - String(this).length)+1;
-        return len > 0? new Array(len).join(chr || '0')+this : this;
+    if (obj == null) {
+        console.log('ShowPrint_pass2: invalid obj');
+        return;
     }
-
-    var d = new Date,
-        dformat = [(d.getMonth()+1).padLeft(),
-               d.getDate().padLeft(),
-               d.getFullYear()].join('/') +' ' +
-              [d.getHours().padLeft(),
-               d.getMinutes().padLeft(),
-               d.getSeconds().padLeft()].join(':');
- 
-    return dformat;
-}
-
-function getCustomer() {
-    var name = sessionStorage.getItem('coCustomer');
-    var phone = localStorage.getItem(prefix_customer+name);
-    return name + ' (TEL : ' + phone + ')';
-}
-
-function ShowPrint() {
-
-    var count = 0;
-    var total = 0;
 
     var text = '';
 
     text += '<div class=company>';
-    text += '<br>' + localStorage.getItem('coName');
-    text += '<br>TEL : ' + localStorage.getItem('coPhone');
+    text += '<br>' + localStorage.getItem(coName);
+    text += '<br>TEL : ' + localStorage.getItem(coPhone);
+    text += '<br>ADDR : ' + localStorage.getItem(coAddr);
     text += '</div>';
 
     text += '<div class=customer>';
-    text += '<br>Ordered by : ' + getCustomer();
-    text += '<br>Date : ' + getDate();
+    text += '<br>RecordID : ' + obj['id'];
+    text += '<br>Ordered by : ' + obj['customer'];
+    text += '<br>Date : ' + date2text(obj['date']);
     text += '</div>';
 
     text += '<br>Detail<hr>';
@@ -50,34 +30,44 @@ function ShowPrint() {
     text += '<td class=num>Qty</td>';
     text += '<td class=amount>Amount</td>';
     text += '</tr>'
-    for (var i = 0; i < sessionStorage.length; i++) {
-        if (sessionStorage.key(i).indexOf(prefix_order) != 0)
-            continue;
-        var name = sessionStorage.key(i);
-        var value = sessionStorage.getItem(name).split(separator);
+
+    var order = obj['order'];
+
+    for (key in order) {
+        var name = key;
+        var value = order[key].split(separator);
         var price = value[0];
         var qty = value[1];
         var amount = price * qty;
         text += '<tr>';
-        text += '<td>'+name.substring(prefix_order.length)+'</td>';
+        text += '<td>'+name+'</td>';
         text += '<td class=num>'+price+'</td>';
         text += '<td class=num>'+qty+'</td>';
         text += '<td class=amount>'+amount+'</td>';
         text += '</tr>';
-        count += 1;
-        total += amount;
     }
+
     text += '</table>';
     text += '</div>';
 
     text += '<br>';
     text += '<div class=total>';
-    text += ' Item: '+count+' Total: '+total;
+    text += ' Item: '+ obj['count'] +' Total: '+ obj['total'];
     text += '</div>'
 
     document.getElementById('PrintResult').innerHTML=text;
 }
 
-function PrintOrder() {
-    window.open('print.html', '_blank');
+function ShowPrint_GetObj() {
+    var id = getURLParameter('id');
+    GetRecord(parseInt(id, 10), ShowPrint_ProcObj);
 }
+
+function ShowPrint() {
+    InitRecordDB(ShowPrint_GetObj);
+}
+
+function PrintObjByID(id) {
+    window.open('print.html?id='+id, '_blank');
+}
+

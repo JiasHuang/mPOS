@@ -31,8 +31,8 @@ function EditCustomer() {
     var name = document.getElementById('CustomerName').value;
     var phone = document.getElementById('CustomerPhone').value;
     var text = '<table>';
-    text += '<tr><th>Name</th><td><input type=text id=NewCustomerName \></td></tr>'
-    text += '<tr><th>Phone</th><td><input type=text id=NewCustomerPhone \></td></tr>'
+    text += '<tr><th>Customer Name</th><td><input type=text id=NewCustomerName \></td></tr>'
+    text += '<tr><th>Customer Phone</th><td><input type=text id=NewCustomerPhone \></td></tr>'
     text += '</table>';
     document.getElementById('CustomerResult').innerHTML=text;
     document.getElementById('NewCustomerName').value=name;
@@ -59,7 +59,7 @@ function ShowCustomer() {
 
     var text = '';
     text += '<table>';
-    text += '<tr><th>Name</th><th>Phone</th></tr>';
+    text += '<tr><th>Customer Name</th><th>Customer Phone</th></tr>';
     for (var i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i).indexOf(prefix_customer) != 0)
             continue;

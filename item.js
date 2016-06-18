@@ -1,5 +1,5 @@
 
-function AddItem() {
+function AddSelectedItem() {
     var name = document.getElementById('ItemName').value;
     var price = document.getElementById('ItemPrice').value;
     if (name != '' && price != '' && !isNaN(price)) {
@@ -24,13 +24,15 @@ function SaveItem() {
 
    document.getElementById('ItemName').value = document.getElementById('NewItemName').value;
    document.getElementById('ItemPrice').value = document.getElementById('NewItemPrice').value;
-   AddItem();
+   AddSelectedItem();
 }
 
-function EditItem() {
+function EditItem(selected) {
 
-    var name = document.getElementById('ItemName').value;
-    var price = document.getElementById('ItemPrice').value;
+    if (selected != true) {
+        document.getElementById('ItemName').value = '';
+        document.getElementById('ItemPrice').value = '';
+    }
 
     var text = '';
     text += '<table>';
@@ -39,16 +41,11 @@ function EditItem() {
     text += '</table>';
 
     document.getElementById('ItemResult').innerHTML=text;
-    document.getElementById('NewItemName').value=name;
-    document.getElementById('NewItemPrice').value=price;
+    document.getElementById('NewItemName').value = document.getElementById('ItemName').value;
+    document.getElementById('NewItemPrice').value = document.getElementById('ItemPrice').value;
+
     $('#ItemEntry').hide();
     $('#ItemEdit').show();
-}
-
-function NewItem() {
-    document.getElementById('ItemName').value = '';
-    document.getElementById('ItemPrice').value = '';
-    EditItem();
 }
 
 function SelectItem(element) {
