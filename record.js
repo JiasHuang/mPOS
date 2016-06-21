@@ -153,15 +153,6 @@ function PrintSelectedRecord() {
     PrintObjByID(selectedRecordID);
 }
 
-//function SaveEdit() {
-//    ShowRecord();
-//}
-
-function EditSelectedRecord() {
-    $('#RecordEntry').hide();
-    $('#RecordEdit').show();
-}
-
 function LoadRecord() {
     InitRecordDB(ShowRecord);
 }
