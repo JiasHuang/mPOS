@@ -153,9 +153,9 @@ function PrintSelectedRecord() {
     PrintObjByID(selectedRecordID);
 }
 
-function SaveEdit() {
-    ShowRecord();
-}
+//function SaveEdit() {
+//    ShowRecord();
+//}
 
 function EditSelectedRecord() {
     $('#RecordEntry').hide();
