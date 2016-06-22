@@ -19,6 +19,7 @@
 
 <body>
 
+<div id="RecordFilter"></div>
 <div id="RecordResult"></div>
 
 <hr>
@@ -27,7 +28,21 @@
 <div id ="RecordEntry" class="menubar">
     <button class="btn" onclick="location.href='index.html'">MENU</button>
     <button class="btn" onclick="DelSelectedRecord()">DEL</button>
+    <button class="btn" onclick="EditSelectedRecord()">EDIT</button>
     <button class="btn" onclick="PrintSelectedRecord()">PRINT</button>
+</div>
+
+<div id ="RecordEdit" class="menubar">
+    <button class="btn" onclick="ShowAllRecord()">CANCEL</button>
+    <button class="btn" onclick="EditSelectedRecordItem(false)">ADD</button>
+    <button class="btn" onclick="DelSelectedRecordItem()">DEL</button>
+    <button class="btn" onclick="EditSelectedRecordItem(true)">EDIT</button>
+    <button class="btn" onclick="SaveSelectedRecord()">SAVE</button>
+</div>
+
+<div id ="RecordItemEdit" class="menubar">
+    <button class="btn" onclick="EditSelectedRecord()">CANCEL</button>
+    <button class="btn" onclick="SaveSelectedRecordItem()">SAVE</button>
 </div>
 
 </body>

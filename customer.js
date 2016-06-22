@@ -1,58 +1,61 @@
 
-function AddCustomer() {
-    var name = document.getElementById('CustomerName').value;
-    var phone = document.getElementById('CustomerPhone').value;
-    if (name != '' && phone != '') {
-        localStorage.setItem(prefix_customer+name, phone);
-        ShowCustomer();
+var selectedCustomerName = '';
+var selectedCustomerPhone = '';
+
+function AddSelectedCustomer() {
+
+    if (selectedCustomerName == '' || selectedCustomerPhone == '') {
+        console.log('AddCustomer Error');
+        return;
     }
+
+    localStorage.setItem(prefix_customer+selectedCustomerName, selectedCustomerPhone);
+    ShowCustomer();
 }
 
 function DelCustomer() {
-    var name = document.getElementById('CustomerName').value;
-    localStorage.removeItem(prefix_customer+name);
+    localStorage.removeItem(prefix_customer+selectedCustomerName);
     ShowCustomer();
 }
 
 function SaveCustomer() {
 
-    var oldname = document.getElementById('CustomerName').value;
     var newname = document.getElementById('NewCustomerName').value;
-    if (oldname != '' && newname != '' && oldname != newname) {
-        localStorage.removeItem(prefix_customer+oldname);
+    var newphone = document.getElementById('NewCustomerPhone').value;
+
+    if (selectedCustomerName != '' && selectedCustomerName != newname) {
+        localStorage.removeItem(prefix_customer+selectedCustomerName);
     }
 
-   document.getElementById('CustomerName').value = document.getElementById('NewCustomerName').value;
-   document.getElementById('CustomerPhone').value = document.getElementById('NewCustomerPhone').value;
-   AddCustomer();
+    selectedCustomerName = document.getElementById('NewCustomerName').value;
+    selectedCustomerPhone = document.getElementById('NewCustomerPhone').value;
+    AddSelectedCustomer();
 }
 
-function EditCustomer() {
-    var name = document.getElementById('CustomerName').value;
-    var phone = document.getElementById('CustomerPhone').value;
+function EditCustomer(selected) {
+
+    if (selected != true) {
+        selectedCustomerName = '';
+        selectedCustomerPhone = '';
+    }
+
     var text = '<table>';
     text += '<tr><th>Customer Name</th><td><input type=text id=NewCustomerName \></td></tr>'
     text += '<tr><th>Customer Phone</th><td><input type=text id=NewCustomerPhone \></td></tr>'
     text += '</table>';
-    document.getElementById('CustomerResult').innerHTML=text;
-    document.getElementById('NewCustomerName').value=name;
-    document.getElementById('NewCustomerPhone').value=phone;
+    document.getElementById('CustomerResult').innerHTML = text;
+    document.getElementById('NewCustomerName').value = selectedCustomerName;
+    document.getElementById('NewCustomerPhone').value = selectedCustomerPhone;
     $('#CustomerEntry').hide();
     $('#CustomerEdit').show();
-}
-
-function NewCustomer() {
-    document.getElementById('CustomerName').value = '';
-    document.getElementById('CustomerPhone').value = '';
-    EditCustomer();
 }
 
 function SelectCustomer(element) {
     var name = $(element).find('td:first')[0].innerHTML;
     var phone = $(element).find('td:nth-child(2)')[0].innerHTML;
     $(element).addClass('selected').siblings().removeClass('selected');
-    document.getElementById('CustomerName').value = name;
-    document.getElementById('CustomerPhone').value = phone; 
+    selectedCustomerName = name;
+    selectedCustomerPhone = phone;
 }
 
 function ShowCustomer() {

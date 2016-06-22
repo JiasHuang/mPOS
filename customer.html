@@ -25,18 +25,15 @@
 <div class="space"></div>
 <div id ="CustomerEntry" class="menubar">
     <button class="btn" onclick="location.href='index.html'">MENU</button>
-    <button class="btn" onclick="NewCustomer()">NEW</button>
+    <button class="btn" onclick="EditCustomer(false)">ADD</button>
     <button class="btn" onclick="DelCustomer()">DEL</button>
-    <button class="btn" onclick="EditCustomer()">EDIT</button>
+    <button class="btn" onclick="EditCustomer(true)">EDIT</button>
 </div>
 
 <div id="CustomerEdit" class="btnHolder">
     <button class="btn" onclick="ShowCustomer()">CANCEL</button>
     <button class="btn" onclick="SaveCustomer()">SAVE</button>
 </div>
-
-<input type="hidden" id="CustomerName" />
-<input type="hidden" id="CustomerPhone" />
 
 </body>
 </html>

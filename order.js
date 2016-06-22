@@ -1,32 +1,38 @@
 
-function AddSelectedOrder() {
-    var name = document.getElementById('OrderName').value;
-    var price = document.getElementById('OrderPrice').value;
-    var qty = document.getElementById('OrderQty').value;
-    if (name != '' && price != '' && qty != '' && !isNaN(price) && !isNaN(qty)) {
-        sessionStorage.setItem(prefix_order+name, price+separator+qty);
-        ShowOrder();
-    }
-}
+var selectedOrderName = '';
+var selectedOrderPrice = '';
+var selectedOrderQty = '';
 
-function DelOrder() {
-    var name = document.getElementById('OrderName').value;
-    sessionStorage.removeItem(prefix_order+name);
+function AddSelectedOrder() {
+
+    if (selectedOrderName == '' || selectedOrderPrice == '' || selectedOrderQty == '' || isNaN(selectedOrderPrice) || isNaN(selectedOrderQty)) {
+        console.log('AddSelectedOrder Error');
+        return;
+	}
+
+    sessionStorage.setItem(prefix_order+selectedOrderName, selectedOrderPrice+separator+selectedOrderQty);
     ShowOrder();
 }
 
-function SaveEdit() {
+function DelOrder() {
+    sessionStorage.removeItem(prefix_order+selectedOrderName);
+    ShowOrder();
+}
 
-    var oldname = document.getElementById('OrderName').value;
+function SaveEditOrder() {
+
     var newname = document.getElementById('NewOrderName').value;
-    if (oldname != '' && newname != '' && oldname != newname) {
-        sessionStorage.removeItem(prefix_order+oldname);
+    var newprice = document.getElementById('NewOrderPrice').value;
+    var newqty = document.getElementById('NewOrderQty').value;
+
+    if (selectedOrderName != '' && selectedOrderName != newname) {
+        sessionStorage.removeItem(prefix_order+selectedOrderName);
     }
 
-   document.getElementById('OrderName').value = document.getElementById('NewOrderName').value;
-   document.getElementById('OrderPrice').value = document.getElementById('NewOrderPrice').value;
-   document.getElementById('OrderQty').value = document.getElementById('NewOrderQty').value;
-   AddSelectedOrder();
+    selectedOrderName = newname;
+    selectedOrderPrice = newprice;
+    selectedOrderQty = newqty;
+    AddSelectedOrder();
 }
 
 function LoadPrice() {
@@ -37,9 +43,9 @@ function LoadPrice() {
 function EditOrder(selected) {
 
     if (selected != true) {
-        document.getElementById('OrderName').value = '';
-        document.getElementById('OrderPrice').value = '';
-        document.getElementById('OrderQty').value = '1';
+        selectedOrderName = '';
+        selectedOrderPrice = '';
+        selectedOrderQty = '1';
     }
 
     var select = '';
@@ -56,14 +62,14 @@ function EditOrder(selected) {
     var text = '';
     text += '<table>'
     text += '<tr><th>Item</th><td>'+select+'</td></tr>'
-    text += '<tr><th>Each</th><td><input type=text id=NewOrderPrice \></td></tr>'
+    text += '<tr><th>Price</th><td><input type=text id=NewOrderPrice \></td></tr>'
     text += '<tr><th>Qty</th><td><input type=text id=NewOrderQty \></td></tr>'
     text += '</table>';
 
     document.getElementById('OrderResult').innerHTML=text;
-    document.getElementById('NewOrderName').value = document.getElementById('OrderName').value;
-    document.getElementById('NewOrderPrice').value = document.getElementById('OrderPrice').value;
-    document.getElementById('NewOrderQty').value = document.getElementById('OrderQty').value;
+    document.getElementById('NewOrderName').value = selectedOrderName;
+    document.getElementById('NewOrderPrice').value = selectedOrderPrice;
+    document.getElementById('NewOrderQty').value = selectedOrderQty;
 
     $('#CustomerResult').hide();
     $('#OrderEntry').hide();
@@ -75,9 +81,9 @@ function SelectOrder(element) {
     var price = $(element).find('td:nth-child(2)')[0].innerHTML;
     var qty = $(element).find('td:nth-child(3)')[0].innerHTML;
     $(element).addClass('selected').siblings().removeClass('selected');
-    document.getElementById('OrderName').value = name;
-    document.getElementById('OrderPrice').value = price; 
-    document.getElementById('OrderQty').value = qty; 
+    selectedOrderName = name;
+    selectedOrderPrice = price;
+    selectedOrderQty = qty;
 }
 
 function ShowOrder() {
@@ -171,6 +177,8 @@ function GenRecordObj() {
     obj['count'] = count;
     obj['total'] = total;
     obj['order'] = order;
+    obj['ship'] = 'no';
+    obj['paid'] = 'no';
 
     return obj;
 }

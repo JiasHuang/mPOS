@@ -56,12 +56,12 @@ td {
     background-color: #4682B4;
     border: none;
     color: white;
-    padding: 12px 16px;
+    padding: 0px 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 32px;
-    margin: 4px 2px;
+    font-size: 48px;
+    margin: 0px 12px;
     cursor: pointer;
 }
 

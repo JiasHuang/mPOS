@@ -1,37 +1,42 @@
 
+var selectedItemName = '';
+var selectedItemPrice = '';
+
 function AddSelectedItem() {
-    var name = document.getElementById('ItemName').value;
-    var price = document.getElementById('ItemPrice').value;
-    if (name != '' && price != '' && !isNaN(price)) {
-        localStorage.setItem(prefix_item+name, price);
-        ShowItem();
+
+    if (selectedItemName == '' || selectedItemPrice == '' || isNaN(selectedItemPrice)) {
+        console.log('AddSelectedItem Error');
+        return;
     }
+
+    localStorage.setItem(prefix_item+name, price);
+    ShowItem();
 }
 
 function DelItem() {
-    var name = document.getElementById('ItemName').value;
-    localStorage.removeItem(prefix_item+name);
+    localStorage.removeItem(prefix_item+selectedItemName);
     ShowItem();
 }
 
 function SaveItem() {
 
-    var oldname = document.getElementById('ItemName').value;
     var newname = document.getElementById('NewItemName').value;
-    if (oldname != '' && newname != '' && oldname != newname) {
-        localStorage.removeItem(prefix_item+oldname);
+    var newprice = document.getElementById('NewItemPrice').value;
+
+    if (selectedItemName != '' && selectedItemName != newname) {
+        localStorage.removeItem(prefix_item+selectedItemName);
     }
 
-   document.getElementById('ItemName').value = document.getElementById('NewItemName').value;
-   document.getElementById('ItemPrice').value = document.getElementById('NewItemPrice').value;
-   AddSelectedItem();
+    selectedItemName = document.getElementById('NewItemName').value;
+    selectedItemPrice = document.getElementById('NewItemPrice').value;
+    AddSelectedItem();
 }
 
 function EditItem(selected) {
 
     if (selected != true) {
-        document.getElementById('ItemName').value = '';
-        document.getElementById('ItemPrice').value = '';
+        selectedItemName = '';
+        selectedItemPrice = '';
     }
 
     var text = '';
@@ -41,8 +46,8 @@ function EditItem(selected) {
     text += '</table>';
 
     document.getElementById('ItemResult').innerHTML=text;
-    document.getElementById('NewItemName').value = document.getElementById('ItemName').value;
-    document.getElementById('NewItemPrice').value = document.getElementById('ItemPrice').value;
+    document.getElementById('NewItemName').value = selectedItemName;
+    document.getElementById('NewItemPrice').value = selectedItemPrice;
 
     $('#ItemEntry').hide();
     $('#ItemEdit').show();
@@ -52,8 +57,8 @@ function SelectItem(element) {
     var name = $(element).find('td:first')[0].innerHTML;
     var price = $(element).find('td:nth-child(2)')[0].innerHTML;
     $(element).addClass('selected').siblings().removeClass('selected');
-    document.getElementById('ItemName').value = name;
-    document.getElementById('ItemPrice').value = price; 
+    selectedItemName = name;
+    selectedItemPrice = price; 
 }
 
 function ShowItem() {
