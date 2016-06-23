@@ -2,10 +2,10 @@
 var selectedItemName = '';
 var selectedItemPrice = '';
 
-function AddSelectedItem() {
+function AddItem(name, price) {
 
-    if (selectedItemName == '' || selectedItemPrice == '' || isNaN(selectedItemPrice)) {
-        console.log('AddSelectedItem Error');
+    if (name == '' || price == '' || isNaN(price)) {
+        console.log('AddItem Error');
         return;
     }
 
@@ -20,16 +20,17 @@ function DelItem() {
 
 function SaveItem() {
 
-    var newname = document.getElementById('NewItemName').value;
-    var newprice = document.getElementById('NewItemPrice').value;
+    var name = document.getElementById('NewItemName').value;
+    var price = document.getElementById('NewItemPrice').value;
 
-    if (selectedItemName != '' && selectedItemName != newname) {
+    if (selectedItemName != '' && selectedItemName != name) {
         localStorage.removeItem(prefix_item+selectedItemName);
     }
 
-    selectedItemName = document.getElementById('NewItemName').value;
-    selectedItemPrice = document.getElementById('NewItemPrice').value;
-    AddSelectedItem();
+    selectedItemName = name;
+    selectedItemPrice = price;
+
+    AddItem(name, price);
 }
 
 function EditItem(selected) {
@@ -41,8 +42,8 @@ function EditItem(selected) {
 
     var text = '';
     text += '<table>';
-    text += '<tr><th>Name</th><td><input type=text id=NewItemName \></td></tr>'
-    text += '<tr><th>Price</th><td><input type=text id=NewItemPrice \></td></tr>'
+    text += '<tr><th>Item Name</th><td><input type=text id=NewItemName \></td></tr>'
+    text += '<tr><th>Item Price</th><td><input type=text id=NewItemPrice \></td></tr>'
     text += '</table>';
 
     document.getElementById('ItemResult').innerHTML=text;
@@ -65,7 +66,7 @@ function ShowItem() {
 
     var text = '';
     text += '<table>';
-    text += '<tr><th>Name</th><th>Price</th></tr>';
+    text += '<tr><th>Item Name</th><th>Item Price</th></tr>';
     for (var i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i).indexOf(prefix_item) != 0)
             continue;

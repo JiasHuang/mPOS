@@ -203,13 +203,26 @@ function SaveOrder_pass3(id) {
 
     var text = '';
     text += '<h1>Saved Successfully</h1>';
-    text += '<h1>';
-    text += ' [RecordID] ' + id;
-    text += ' [Customer] ' + obj['customer'];
-    text += ' [Total] ' + obj['total'];
-    text += ' <a target="_blank" href=print.html?id='+id+'>[PRINT]</a>';
-    text += '</h1>';
+    text += '<table>'
+    text += '<tr><td>RecordID</td><td class=right>'+id+'</td></tr>';
+    text += '<tr><td>Customer</td><td class=right>'+obj['customer']+'</td></tr>';
+    text += '<tr><td>Total Amount</td><td class=right>$'+obj['total']+'</td></tr>';
+    text += '</table>';
+
+    text += '<br><hr>';
+
+    text += '<table><tr>';
+    text += '<td><a href=index.html>MENU</a></td>';
+    text += '<td><a href=order.html>ORDER</a></td>';
+    text += '<td><a href=record.html>RECORD</a></td>';
+    text += '<td><a target="_blank" href=print.html?id='+id+'>PRINT</a></td>';
+    text += '</tr></table>';
+
     document.getElementById('OrderResult').innerHTML = text;
+
+    $('#CustomerResult').hide();
+    $('#OrderEntry').hide();
+    $('#OrderEdit').hide();
 }
 
 function SaveOrder_pass2() {
