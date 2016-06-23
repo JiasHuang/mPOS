@@ -296,7 +296,11 @@ function EditSelectedRecordItem(selected) {
     var selectedRecordItemPrice = '';
     var selectedRecordItemQty = '1';
 
-    if (selected == true) {
+    if (selected != true) {
+        selectedRecordItem = '';
+    }
+
+    else {
         selectedRecordItemName = selectedRecordItem;
         var value = selectedRecordObj['order'][selectedRecordItem].split(separator);
         selectedRecordItemPrice = value[0];
