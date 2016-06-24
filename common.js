@@ -54,6 +54,13 @@ function GenDemoObj() {
 }
 
 function getURLParameter(name) {
-  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 }
 
+function float_m(a, b) {
+    return ((1000 * a) * (1000 * b)) / 1000000; 
+}
+
+function float_a(a, b) {
+    return ((1000 * a) + (1000 * b)) / 1000; 
+}

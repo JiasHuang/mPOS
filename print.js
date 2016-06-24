@@ -38,7 +38,7 @@ function ShowPrint_ProcObj(obj) {
         var value = order[key].split(separator);
         var price = value[0];
         var qty = value[1];
-        var amount = price * qty;
+        var amount = float_m(price, qty);
         text += '<tr>';
         text += '<td>'+name+'</td>';
         text += '<td class=num>'+price+'</td>';

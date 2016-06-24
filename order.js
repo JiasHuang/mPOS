@@ -101,7 +101,7 @@ function ShowOrder() {
         var value = sessionStorage.getItem(name).split(separator);
         var price = value[0];
         var qty = value[1];
-        var amount = price * qty;
+        var amount = float_m(price, qty);
         text += '<tr onclick=SelectOrder(this)>';
         text += '<td>'+name.substring(prefix_order.length)+'</td>';
         text += '<td>'+price+'</td>';
@@ -109,7 +109,7 @@ function ShowOrder() {
         text += '<td class=amount>'+amount+'</td>';
         text += '</tr>';
         count += 1;
-        total += amount;
+        total = float_a(total, amount);
     }
     text += '</table>';
 
