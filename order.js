@@ -202,10 +202,13 @@ function SaveOrder_pass3(id) {
     ResetOrder();
 
     var text = '';
-    text += '<h1>Saved Successfully</h1>';
+    text += '<br>'
+    text += '<h1>Saved Successfully. ID='+id+'</h1>';
+    text += '<br><hr>'
     text += '<table>'
     text += '<tr><td>RecordID</td><td class=right>'+id+'</td></tr>';
     text += '<tr><td>Customer</td><td class=right>'+obj['customer']+'</td></tr>';
+    text += '<tr><td>Total Items</td><td class=right>'+obj['count']+'</td></tr>';
     text += '<tr><td>Total Amount</td><td class=right>$'+obj['total']+'</td></tr>';
     text += '</table>';
 
