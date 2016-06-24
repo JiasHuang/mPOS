@@ -1,0 +1,22 @@
+CACHE MANIFEST
+# version 0.002
+
+CACHE:
+http://code.jquery.com/jquery-latest.min.js
+common.js
+config.html
+config.js
+customer.html
+customer.js
+entry.css
+index.html
+item.html
+item.js
+order.html
+order.js
+print.css
+print.html
+print.js
+record.html
+record.js
+style.css

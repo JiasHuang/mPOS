@@ -159,7 +159,7 @@ function ShowFilter() {
 
     var text = '';
     text += '<table>';
-    text += '<tr><td>Filtered By : '+select+'</td></tr>';
+    text += '<tr><td>Filter: '+select+'</td></tr>';
     text += '</table>';
 
     document.getElementById('RecordFilter').innerHTML=text;
