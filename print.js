@@ -68,6 +68,6 @@ function ShowPrint() {
 }
 
 function PrintObjByID(id) {
-    window.open('print.html?id='+id, '_blank');
+    window.open('print.html#result?id='+id, '_blank');
 }
 

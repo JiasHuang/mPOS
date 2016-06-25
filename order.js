@@ -218,7 +218,7 @@ function SaveOrder_pass3(id) {
     text += '<td><a href=index.html>MENU</a></td>';
     text += '<td><a href=order.html>ORDER</a></td>';
     text += '<td><a href=record.html>RECORD</a></td>';
-    text += '<td><a target="_blank" href=print.html?id='+id+'>PRINT</a></td>';
+    text += '<td><a target="_blank" href=print.html#result?id='+id+'>PRINT</a></td>';
     text += '</tr></table>';
 
     document.getElementById('OrderResult').innerHTML = text;

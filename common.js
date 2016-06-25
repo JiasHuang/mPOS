@@ -54,7 +54,20 @@ function GenDemoObj() {
 }
 
 function getURLParameter(name) {
-    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+
+    var url = window.location.href;
+
+    if (url.indexOf("?") != -1) {
+        var search = url.split("?");
+        parameters = search[1].split("&");
+        for (var i = 0; i < parameters.length; i++) {
+            parameter = parameters[i].split("=");
+            if (name == parameter[0])
+                return parameter[1];
+        }
+    }
+
+    return null;
 }
 
 function float_m(a, b) {
