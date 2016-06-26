@@ -14,8 +14,11 @@ function AddItem(name, price) {
 }
 
 function DelItem() {
-    localStorage.removeItem(prefix_item+selectedItemName);
-    ShowItem();
+    var result = confirm("Want to delete?");
+    if (result) {
+        localStorage.removeItem(prefix_item+selectedItemName);
+        ShowItem();
+    }
 }
 
 function SaveItem() {

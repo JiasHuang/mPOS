@@ -15,8 +15,11 @@ function AddSelectedOrder() {
 }
 
 function DelOrder() {
-    sessionStorage.removeItem(prefix_order+selectedOrderName);
-    ShowOrder();
+    var result = confirm("Want to delete?");
+    if (result) {
+        sessionStorage.removeItem(prefix_order+selectedOrderName);
+        ShowOrder();
+    }
 }
 
 function SaveEditOrder() {

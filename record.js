@@ -6,6 +6,7 @@ var db;
 var selectedRecordID;
 var selectedRecordObj;
 var selectedFilter;
+var selectedFilterCustomer = '';
 var selectedRecordItem;
 
 function InitRecordDB(callback) {
@@ -109,7 +110,10 @@ function SaveRecordObj(obj, callback) {
 }
 
 function DelSelectedRecord(){
-    DelRecord(selectedRecordID, ShowAllRecord);
+    var result = confirm("Want to delete?");
+    if (result) {
+        DelRecord(selectedRecordID, ShowAllRecord);
+    }
 }
 
 function getAllItems(callback) {
@@ -144,11 +148,24 @@ function SelectRecord(element) {
 }
 
 function LoadFilter() {
+    selectedFilterCustomer = document.getElementById('selectedFilterCustomer').value;
     selectedFilter = document.getElementById('selectedFilter').value;
     ShowAllRecord();
 }
 
 function ShowFilter() {
+
+    var selectCustomer = '';
+    selectCustomer += '<select id=selectedFilterCustomer onChange=\'LoadFilter()\'>';
+    selectCustomer += '<option value=\"\">--- ALL ---</option>';
+    for (var i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).indexOf(prefix_customer) != 0)
+            continue;
+        var name = localStorage.key(i);
+        var item = name.substring(prefix_customer.length);
+        selectCustomer += '<option value=\"'+name+'\">'+item+'</option>';
+    }
+    selectCustomer += '</select>'
 
     var select = '';
     select += '<select id=selectedFilter onChange=\'LoadFilter()\'>';
@@ -159,6 +176,7 @@ function ShowFilter() {
 
     var text = '';
     text += '<table>';
+    text += '<tr><td>Customer: '+selectCustomer+'</td></tr>';
     text += '<tr><td>Filter: '+select+'</td></tr>';
     text += '</table>';
 
@@ -173,6 +191,8 @@ function ShowAllObj(objs) {
     text += '<tr><th>ID</th><th>Date</th><th>Customer</th><th class=total>Total Amount</th><th>Shipped</th><th>Paid</th></tr>';
     for (var i = 0; i < objs.length; i++) {
 
+        if (selectedFilterCustomer != '' && objs[i]['customer'] != selectedFilterCustomer.substring(prefix_customer.length))
+            continue;
         if (selectedFilter == 'non-shipped' && objs[i]['ship'] != 'no')
             continue;
         if (selectedFilter == 'non-paid' && objs[i]['paid'] != 'no')
@@ -269,6 +289,17 @@ function EditObj(obj) {
     $('#RecordEntry').hide();
     $('#RecordEdit').show();
     $('#RecordItemEdit').hide();
+
+    if (obj['ship'] == 'yes') {
+        $('#RecordEdit_btnAdd').hide();
+        $('#RecordEdit_btnDel').hide();
+        $('#RecordEdit_btnEdit').hide();
+    }
+    else {
+        $('#RecordEdit_btnAdd').show();
+        $('#RecordEdit_btnDel').show();
+        $('#RecordEdit_btnEdit').show();
+    }
 }
 
 function DelSelectedRecordItem() {
@@ -337,9 +368,12 @@ function EditSelectedRecordItem(selected) {
 }
 
 function SaveSelectedRecord() {
-    selectedRecordObj['ship'] = document.getElementById('RecordShipped').value;
-    selectedRecordObj['paid'] = document.getElementById('RecordPaid').value;
-    SaveRecordObj(selectedRecordObj, ShowAllRecord);
+    var result = confirm("Want to Save?");
+    if (result) {
+        selectedRecordObj['ship'] = document.getElementById('RecordShipped').value;
+        selectedRecordObj['paid'] = document.getElementById('RecordPaid').value;
+        SaveRecordObj(selectedRecordObj, ShowAllRecord);
+    }
 }
 
 function SaveSelectedRecordItem() {

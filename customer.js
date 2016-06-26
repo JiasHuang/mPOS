@@ -14,8 +14,11 @@ function AddSelectedCustomer() {
 }
 
 function DelCustomer() {
-    localStorage.removeItem(prefix_customer+selectedCustomerName);
-    ShowCustomer();
+    var result = confirm("Want to delete?");
+    if (result) {
+        localStorage.removeItem(prefix_customer+selectedCustomerName);
+        ShowCustomer();
+    }
 }
 
 function SaveCustomer() {
