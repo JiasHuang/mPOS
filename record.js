@@ -289,17 +289,6 @@ function EditObj(obj) {
     $('#RecordEntry').hide();
     $('#RecordEdit').show();
     $('#RecordItemEdit').hide();
-
-    if (obj['ship'] == 'yes') {
-        $('#RecordEdit_btnAdd').hide();
-        $('#RecordEdit_btnDel').hide();
-        $('#RecordEdit_btnEdit').hide();
-    }
-    else {
-        $('#RecordEdit_btnAdd').show();
-        $('#RecordEdit_btnDel').show();
-        $('#RecordEdit_btnEdit').show();
-    }
 }
 
 function DelSelectedRecordItem() {
