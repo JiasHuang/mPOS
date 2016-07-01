@@ -10,6 +10,7 @@ function EditConfig() {
 
     var name = localStorage.getItem(coName);
     var phone = localStorage.getItem(coPhone);
+    var addr = localStorage.getItem(coAddr);
 
     var text = '';
     text += '<table>';
@@ -21,6 +22,7 @@ function EditConfig() {
     document.getElementById('ConfigResult').innerHTML=text;
     document.getElementById('ConfigName').value=name;
     document.getElementById('ConfigPhone').value=phone;
+    document.getElementById('ConfigAddr').value=addr;
     $('#ConfigEntry').hide();
     $('#ConfigEdit').show();
 }
