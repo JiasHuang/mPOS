@@ -147,7 +147,7 @@ function ShowCustomer() {
     var text = '';
 
     text += '<table>';
-    text += '<tr><td>Ordered By : '+select+'</td></tr>';
+    text += '<tr><td>Customer: '+select+'</td></tr>';
     text += '</table>';
 
     document.getElementById('CustomerResult').innerHTML=text;
