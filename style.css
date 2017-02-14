@@ -42,11 +42,6 @@ select {
     font-size: 32px;
 }
 
-.btnHolder {
-    text-align: center;
-    margin: 0px auto;
-}
-
 .space {
     height: 10%;
 }
@@ -70,7 +65,7 @@ select {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 48px;
+    font-size: 64px;
     margin: 12px 12px;
     cursor: pointer;
 }
@@ -88,9 +83,5 @@ select {
 .right {
     text-align: right;
     padding: 8px;
-}
-
-.desc {
-    width: 80%;
 }
 

@@ -209,6 +209,9 @@ function ShowAllObj(objs) {
     }
     text += '</table>';
 
+    if (!objs.length)
+        text += '<h1>No Jobs. Enjoy Your Days!!</h1>'
+
     document.getElementById('RecordResult').innerHTML=text;
 
     $('#RecordFilter').show();
@@ -341,9 +344,11 @@ function EditSelectedRecordItem(selected) {
     var text = '';
     text += '<table>'
     text += '<tr><th>Item</th><td>'+select+'</td></tr>'
-    text += '<tr><th>Price</th><td><input type=text id=NewRecordItemPrice \></td></tr>'
-    text += '<tr><th>Qty</th><td><input type=text id=NewRecordItemQty \></td></tr>'
+    text += '<tr><th>Price</th><td><input type=text id=NewRecordItemPrice onclick=switchID("NewRecordItemPrice") \></td></tr>'
+    text += '<tr><th>Qty</th><td><input type=text id=NewRecordItemQty onclick=switchID("NewRecordItemQty") \></td></tr>'
     text += '</table>';
+
+    text += numpad('NewRecordItemQty')
 
     document.getElementById('RecordResult').innerHTML=text;
     document.getElementById('NewRecordItemName').value = selectedRecordItemName;

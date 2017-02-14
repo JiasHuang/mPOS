@@ -1,6 +1,6 @@
 
 #numpad {
-    width: 80%;
+    width: 600px;
     margin:auto;
     margin-top:8px;
 }
@@ -11,8 +11,6 @@
     border:1px solid #000000;
     font-size:48px;
     font-weight:bold;
-    width:80px;
-    height:40px;
     cursor:pointer;
     background-color:#666666;
     color:#ffffff;

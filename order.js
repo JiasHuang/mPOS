@@ -65,9 +65,11 @@ function EditOrder(selected) {
     var text = '';
     text += '<table>'
     text += '<tr><th>Item</th><td>'+select+'</td></tr>'
-    text += '<tr><th>Price</th><td><input type=text id=NewOrderPrice \></td></tr>'
-    text += '<tr><th>Qty</th><td><input type=text id=NewOrderQty \></td></tr>'
+    text += '<tr><th>Price</th><td><input type=text id=NewOrderPrice onclick=switchID("NewOrderPrice") \></td></tr>'
+    text += '<tr><th>Qty</th><td><input type=text id=NewOrderQty onclick=switchID("NewOrderQty") \></td></tr>'
     text += '</table>';
+
+    text += numpad('NewOrderQty');
 
     document.getElementById('OrderResult').innerHTML=text;
     document.getElementById('NewOrderName').value = selectedOrderName;

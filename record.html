@@ -5,9 +5,11 @@
 <title>mPOS</title>
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="numpad.css">
 
 <script type="text/javascript" src="jquery-latest.min.js"></script>
 <script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="numpad.js"></script>
 <script type="text/javascript" src="record.js"></script>
 <script type="text/javascript" src="print.js"></script>
 
@@ -22,11 +24,10 @@
 <div id="RecordFilter"></div>
 <div id="RecordResult"></div>
 
-<hr>
-
 <div class="space"></div>
 
 <div id ="RecordEntry" class="menubar">
+    <button class="btn" onclick="location.href='index.html'">MENU</button>
     <button class="btn" onclick="DelSelectedRecord()">DEL</button>
     <button class="btn" onclick="EditSelectedRecord()">EDIT</button>
     <button class="btn" onclick="PrintSelectedRecord()">PRINT</button>

@@ -5,9 +5,11 @@
 <title>mPOS</title>
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="numpad.css">
 
 <script type="text/javascript" src="jquery-latest.min.js"></script>
 <script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="numpad.js"></script>
 <script type="text/javascript" src="order.js"></script>
 <script type="text/javascript" src="record.js"></script>
 
@@ -22,17 +24,17 @@
 <div id="CustomerResult"></div>
 <div id="OrderResult"></div>
 
-<hr>
-
 <div class="space"></div>
+
 <div id ="OrderEntry" class="menubar">
+    <button class="btn" onclick="location.href='index.html'">MENU</button>
     <button class="btn" onclick="EditOrder(false)">ADD</button>
     <button class="btn" onclick="DelOrder()">DEL</button>
     <button class="btn" onclick="EditOrder(true)">EDIT</button>
     <button class="btn" onclick="SaveOrder()">SAVE</button>
 </div>
 
-<div id="OrderEdit" class="btnHolder">
+<div id="OrderEdit" class="menubar">
     <button class="btn" onclick="ShowOrder()">CANCEL</button>
     <button class="btn" onclick="SaveEditOrder()">SAVE</button>
 </div>
