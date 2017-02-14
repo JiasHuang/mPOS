@@ -188,7 +188,7 @@ function ShowAllObj(objs) {
 
     var text = '';
     text += '<br><table>';
-    text += '<tr><th>ID</th><th>Date</th><th>Customer</th><th class=total>Total Amount</th><th>Shipped</th><th>Paid</th></tr>';
+    text += '<tr><th>ID</th><th>Date</th><th>Customer</th><th>Total</th><th>Shipped</th><th>Paid</th></tr>';
     for (var i = 0; i < objs.length; i++) {
 
         if (selectedFilterCustomer != '' && objs[i]['customer'] != selectedFilterCustomer.substring(prefix_customer.length))
@@ -256,7 +256,7 @@ function EditObj(obj) {
 
     text += '<br><hr>'
     text += '<table>';
-    text += '<tr><th>Item</th><th>Price</th><th>Qty</th><th class=amount>Amount</th></tr>';
+    text += '<tr><th>Item</th><th>Price</th><th>Qty</th><th class=amount>Amount</tr>';
     for (key in order) {
         var value = order[key].split(separator);
         var price = value[0];

@@ -34,9 +34,9 @@ function ShowConfig() {
     var addr = localStorage.getItem(coAddr);
 
     var text = '<table>';
-    text += '<tr><th>My Name</th><td>'+name+'</td></tr>';
-    text += '<tr><th>My Phone</th><td>'+phone+'</td></tr>';
-    text += '<tr><th>My Addr</th><td>'+addr+'</td></tr>';
+    text += '<tr><th>My Name</th><td class=desc>'+name+'</td></tr>';
+    text += '<tr><th>My Phone</th><td class=desc>'+phone+'</td></tr>';
+    text += '<tr><th>My Addr</th><td class=desc>'+addr+'</td></tr>';
     text += '</table>';
 
     document.getElementById('ConfigResult').innerHTML=text;

@@ -1,6 +1,8 @@
 
 table {
     width: 100%;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 td, th {
@@ -30,10 +32,14 @@ td {
     font-size:32px;
 }
 
-.btnHolderEntry {
-    width: 80%;
-    text-align: center;
-    margin: 0px auto;
+input {
+    width: 100%;
+    font-size: 32px;
+}
+
+select {
+    width: 100%;
+    font-size: 32px;
 }
 
 .btnHolder {
@@ -50,29 +56,23 @@ td {
     text-align: center;
     position: fixed;
     top: 90%;
+    height: 10%;
+    background-color: rgba(0, 0, 0, 0.1)
 }
 
 .btn {
+    min-width: 15%;
     background-color: #4682B4;
     border: none;
+    border-radius: 25px;
     color: white;
-    padding: 0px 12px;
+    padding: 4px 4px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 48px;
-    margin: 0px 12px;
+    margin: 12px 12px;
     cursor: pointer;
-}
-
-input {
-    width: 100%;
-    font-size: 32px;
-}
-
-select {
-    width: 100%;
-    font-size: 32px;
 }
 
 .amount {
@@ -89,3 +89,8 @@ select {
     text-align: right;
     padding: 8px;
 }
+
+.desc {
+    width: 80%;
+}
+
