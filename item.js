@@ -48,7 +48,7 @@ function EditItem(selected) {
     text += '<tr><th>Item Name</th><td><input type=text id=NewItemName \></td></tr>'
     text += '<tr><th>Item Price</th><td><input type=text id=NewItemPrice \></td></tr>'
     text += '</table>';
-    text += numpad('NewItemPrice');
+    text += numpad({'price':'NewItemPrice'});
 
     document.getElementById('ItemResult').innerHTML=text;
     document.getElementById('NewItemName').value = selectedItemName;

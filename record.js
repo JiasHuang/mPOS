@@ -348,7 +348,7 @@ function EditSelectedRecordItem(selected) {
     text += '<tr><th>Qty</th><td><input type=text id=NewRecordItemQty onclick=switchID("NewRecordItemQty") \></td></tr>'
     text += '</table>';
 
-    text += numpad('NewRecordItemQty')
+    text += numpad({'qty':'NewRecordItemQty', 'price':'NewRecordItemPrice'});
 
     document.getElementById('RecordResult').innerHTML=text;
     document.getElementById('NewRecordItemName').value = selectedRecordItemName;

@@ -69,7 +69,7 @@ function EditOrder(selected) {
     text += '<tr><th>Qty</th><td><input type=text id=NewOrderQty onclick=switchID("NewOrderQty") \></td></tr>'
     text += '</table>';
 
-    text += numpad('NewOrderQty');
+    text += numpad({'qty':'NewOrderQty', 'price':'NewOrderPrice'});
 
     document.getElementById('OrderResult').innerHTML=text;
     document.getElementById('NewOrderName').value = selectedOrderName;

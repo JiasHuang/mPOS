@@ -9,7 +9,7 @@
     vertical-align:middle;
     text-align:center;
     border:1px solid #000000;
-    font-size:48px;
+    font-size:72px;
     font-weight:bold;
     cursor:pointer;
     background-color:#666666;
@@ -21,3 +21,7 @@
     color:#FFFF00;
 }
 
+#numpad tr td.hl {
+    background-color:#999999;
+    color:#FFFF00;
+}
