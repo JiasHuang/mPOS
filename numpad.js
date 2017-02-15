@@ -2,26 +2,53 @@
 var ref = '';
 var cnt = 0;
 
+var callback_fun = null;
+var callback_arg = null;
+
 function addCode(key) {
+
+    element = document.getElementById(ref)
 
     if (cnt === 0) {
         num = '';
         cnt++;
     } else {
-        num = document.getElementById(ref).value;
+        if (element.tagName == 'INPUT') {
+            num = element.value;
+        } else {
+            num = element.innerHTML;
+        }
     }
 
     if (key == '.' && num.length == 0) {
-        num = '0.'
+        num = '0.';
+    } else if (key != '.' && num == '0') {
+        num = key;
     } else {
 	    num = num + key;
     }
 
-    document.getElementById(ref).value = num;
+    if (element.tagName == 'INPUT') {
+        element.value = num;
+    } else {
+        element.innerHTML = num;
+    }
+
+    if (callback_fun) {
+        callback_fun(callback_arg)
+    }
 }
 
 function resetCode() {
-    document.getElementById(ref).value = ''
+    element = document.getElementById(ref)
+    if (element.tagName == 'INPUT') {
+        element.value = '0'
+    } else {
+        element.innerHTML = '0';
+    }
+    if (callback_fun) {
+        callback_fun(callback_arg)
+    }
 }
 
 function switchHighLight(hl, nh) {
@@ -31,16 +58,24 @@ function switchHighLight(hl, nh) {
     document.getElementById(nh).style.color = "#ffffff";
 }
 
-function switchToPrice(id) {
+function switchTo(id) {
     ref = id;
     cnt = 0;
+}
+
+function switchToPrice(id) {
+    switchTo(id);
     switchHighLight('numpad_price', 'numpad_qty');
 }
 
 function switchToQty(id) {
-    ref = id;
-    cnt = 0;
+    switchTo(id);
     switchHighLight('numpad_qty', 'numpad_price');
+}
+
+function numpad_setCallback(cb_fun, cb_arg) {
+    callback_fun = cb_fun;
+    callback_arg = cb_arg;
 }
 
 function numpad_init(obj) {

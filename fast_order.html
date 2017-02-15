@@ -1,0 +1,46 @@
+<html>
+
+<head>
+
+<title>mPOS</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="numpad.css">
+
+<script type="text/javascript" src="jquery-latest.min.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="numpad.js"></script>
+<script type="text/javascript" src="fast_order.js"></script>
+<script type="text/javascript" src="record.js"></script>
+
+<script type="text/javascript">
+    window.onload = LoadFastOrder;
+</script>
+
+</head>
+
+<body bgcolor=silver>
+
+<div id="FastOrderResult"></div>
+
+<div id="FastOrderMain" style="width: 100%;">
+    <div style="float:left; width: 40%">
+        <div id="CustomerResult"></div>
+        <div id="OrderResult"></div>
+    </div>
+    <div class="fixedContainer" style="float:right;">
+        <div id="FastOrderNumPad"></div>
+        <div id="FastOrderTotal"></div>
+    </div>
+</div>
+
+<div style="clear:both"></div>
+<div class="space"></div>
+
+<div id ="FastOrderMenuBar" class="menubar">
+    <button class="btn" onclick="location.href='index.html'">MENU</button>
+    <button class="btn" onclick="SaveFastOrder()">SAVE</button>
+</div>
+
+</body>
+</html>

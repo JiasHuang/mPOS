@@ -28,6 +28,15 @@ th {
     font-size:32px;
 }
 
+th.total {
+    max-width: 30%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+    font-size:32px;
+}
+
 td {
     font-size:32px;
 }
@@ -100,3 +109,8 @@ select {
     padding: 8px;
 }
 
+.fixedContainer {
+    position: fixed;
+    right: 0%;
+    top: 0%;
+}
