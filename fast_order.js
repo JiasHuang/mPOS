@@ -106,7 +106,7 @@ function GenRecordObj() {
         }
     }
 
-    obj['customer'] = $('#fastOrderCustomer').text();
+    obj['customer'] = $('#FastOrderCustomer').val();
     obj['date'] = getDateFormat();
     obj['count'] = count;
     obj['total'] = total;
