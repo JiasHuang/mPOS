@@ -1,9 +1,9 @@
 
 var ref = '';
 var cnt = 0;
-
-var callback_fun = null;
-var callback_arg = null;
+var head = '';
+var tail = '';
+var mode = '';
 
 function addCode(key) {
 
@@ -33,10 +33,6 @@ function addCode(key) {
     } else {
         element.innerHTML = num;
     }
-
-    if (callback_fun) {
-        callback_fun(callback_arg)
-    }
 }
 
 function resetCode() {
@@ -46,36 +42,25 @@ function resetCode() {
     } else {
         element.innerHTML = '0';
     }
-    if (callback_fun) {
-        callback_fun(callback_arg)
+}
+
+function switchTo(element) {
+    var tagName = $(element).prop("tagName");
+    if (tagName == 'TR'){
+        ref = $(element).find('td:nth-child(2)')[0].id;
+        $(element).children().css("background-color", "#999999");
+        $(element).children().css("color", "#ffff00");
+        $(element).siblings().children().css("background-color", "#666666");
+        $(element).siblings().children().css("color", "#ffffff");
     }
-}
-
-function switchHighLight(hl, nh) {
-    document.getElementById(hl).style.backgroundColor = "#999999";
-    document.getElementById(hl).style.color = "#ffff00";
-    document.getElementById(nh).style.backgroundColor = "#666666";
-    document.getElementById(nh).style.color = "#ffffff";
-}
-
-function switchTo(id) {
-    ref = id;
+    else if (tagName == 'TD'){
+        ref = $(element).id;
+        $(element).css("background-color", "#999999");
+        $(element).css("color", "#ffff00");
+        $(element).siblings().css("background-color", "#666666");
+        $(element).siblings().css("color", "#ffffff");
+    }
     cnt = 0;
-}
-
-function switchToPrice(id) {
-    switchTo(id);
-    switchHighLight('numpad_price', 'numpad_qty');
-}
-
-function switchToQty(id) {
-    switchTo(id);
-    switchHighLight('numpad_qty', 'numpad_price');
-}
-
-function numpad_setCallback(cb_fun, cb_arg) {
-    callback_fun = cb_fun;
-    callback_arg = cb_arg;
 }
 
 function numpad_init(obj) {
@@ -83,6 +68,8 @@ function numpad_init(obj) {
     var price = null;
     var qty = null;
     var switch_text = '';
+    var defPrice = 0;
+    var defQty = 0;
 
     cnt = 0;
 
@@ -92,14 +79,40 @@ function numpad_init(obj) {
     if (obj.hasOwnProperty('qty')) {
         qty = obj['qty'];
     }
+    if (obj.hasOwnProperty('head')) {
+        head = obj['head'];
+    }
+    if (obj.hasOwnProperty('tail')) {
+        tail = obj['tail'];
+    }
+    if (obj.hasOwnProperty('tail')) {
+        mode = obj['mode'];
+    }
+    if (obj.hasOwnProperty('defPrice')) {
+        defPrice = obj['defPrice'];
+    }
+    if (obj.hasOwnProperty('defQty')) {
+        defQty = obj['defQty'];
+    }
 
     if (price && qty) {
-        switch_text += '<table id=numpad cellpadding=5 cellspacing=3>'
-        switch_text += '<tr>'
-        switch_text += '<td id=numpad_price onclick=switchToPrice("'+price+'")>Price</td>'
-        switch_text += '<td id=numpad_qty class=hl onclick=switchToQty("'+qty+'")>Qty</td>'
-        switch_text += '</tr>'
-        switch_text += '</table>'
+        if (mode == 1) {
+            switch_text += '<table id=numpad>'
+            switch_text += '<tr onclick=switchTo(this)>'
+            switch_text += '<td>Price</td><td id='+price+'>'+defPrice+'</td>'
+            switch_text += '</tr>'
+            switch_text += '<tr onclick=switchTo(this)>'
+            switch_text += '<td class=hl>Qty</td><td class=hl id='+qty+'>'+defQty+'</td>'
+            switch_text += '</tr>'
+            switch_text += '</table>'
+        } else {
+            switch_text += '<table id=numpad>'
+            switch_text += '<tr>'
+            switch_text += '<td onclick=switchTo(this)>Price</td>'
+            switch_text += '<td onclick=switchTo(this) class=hl>Qty</td>'
+            switch_text += '</tr>'
+            switch_text += '</table>'
+        }
         ref = qty;
     } else if (price) {
         ref = price;
@@ -113,10 +126,11 @@ function numpad_init(obj) {
 function numpad(obj) {
 
     var switch_text = numpad_init(obj);
+    var text = '';
 
-    text = '<br>'
+    text += head;
     text += switch_text;
-    text += '<table id=numpad cellpadding=5 cellspacing=3>'
+    text += '<table id=numpad>'
     text += '<tr>'
     text += '<td onclick=addCode(7)>7</td>'
     text += '<td onclick=addCode(8)>8</td>'
@@ -138,6 +152,7 @@ function numpad(obj) {
     text += '<td onclick=addCode(".")>.</td>'
     text += '</tr>'
     text += '</table>'
+    text += tail;
 
     return text
 }

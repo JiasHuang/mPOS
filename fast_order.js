@@ -2,7 +2,6 @@
 var fastOrderName = [];
 var fastOrderPrice = [];
 var fastOrderQty = [];
-var fastOrderCustomer = '';
 
 function updateTotal() {
     var total_item = 0;
@@ -13,29 +12,43 @@ function updateTotal() {
             total_amount += float_m(fastOrderPrice[i], fastOrderQty[i]);
         }
     }
-    var text = '';
-    text += '<table>'
-    text += '<tr><th>Total Item</th><td width="50%">'+total_item+'</td></tr>'
-    text += '<tr><th>Total Amount</th><td width="50%">'+total_amount+'</td></tr>'
-    text += '</table>'
-    document.getElementById('FastOrderTotal').innerHTML = text;
+    $('#FastOrderTotalItem').html(total_item);
+    $('#FastOrderTotalAmount').html(total_amount);
 }
 
-function OnEvent(i) {
+function update(i, price, qty) {
     var element = '#_'+i;
-    var idx = parseInt(i);
-    fastOrderPrice[idx] = $(element+'_price').text();
-    fastOrderQty[idx] = $(element+'_qty').text();
+    var index = parseInt(i);
+    $(element+'_price').html(price);
+    $(element+'_qty').html(qty);
+    fastOrderPrice[index] = price;
+    fastOrderQty[index] = qty;
+}
+
+function OnEventSave(i) {
+    var element = '#_'+i;
+    var price = $('#EditPrice').text()
+    var qty = $('#EditQty').text()
+    update(i, price, qty);
     updateTotal();
+    $('#FastOrderEdit').hide();
 }
 
-function SelectOrder(i) {
+function OnEventCancel() {
+    $('#FastOrderEdit').hide();
+}
+
+function EditPriceQty(i) {
     var element = '#_'+i;
-    var prefix = '_'+i;
+    var name = $(element+'_name').text()
+    var price = $(element+'_price').text()
+    var qty = $(element+'_qty').text()
+    var head = '<table id=numpad><tr><td>'+name+'</td></tr></table>';
+    var tail = '<table id=numpad><tr><td onclick=OnEventCancel()>CANCEL</td><td onclick=OnEventSave('+i+')>SAVE</td></tr></table>';
+    var text = numpad({'price':'EditPrice', 'qty':'EditQty', 'head':head, 'tail':tail, 'mode':'1', 'defPrice':price, 'defQty':qty});
     $(element).addClass('selected').siblings().removeClass('selected');
-    numpad_setCallback(OnEvent, i);
-    var text = numpad({'price': prefix+'_price', 'qty': prefix+'_qty'});
-    document.getElementById('FastOrderNumPad').innerHTML = text;
+    $('#FastOrderEdit').html(text);
+    $('#FastOrderEdit').show();
 }
 
 function LoadItemPrice() {
@@ -51,45 +64,31 @@ function LoadItemPrice() {
 }
 
 function ShowOrder() {
-    var text = '';
-    text += '<br><table>';
-    text += '<tr><th>Item</th><th>Price</th><th>Qty</th></tr>';
+    var text = '<table><tr><th>Item</th><th>Price</th><th>Qty</th></tr>';
     for (var i = 0; i < fastOrderName.length; i++) {
-        text += '<tr id=_'+i+' onclick=SelectOrder('+i+')>';
+        text += '<tr id=_'+i+' onclick=EditPriceQty('+i+')>';
         text += '<td id=_'+i+'_name>'+fastOrderName[i]+'</td>';
         text += '<td id=_'+i+'_price>'+fastOrderPrice[i]+'</td>';
         text += '<td id=_'+i+'_qty>'+fastOrderQty[i]+'</td>';
         text += '</tr>';
     }
     text += '</table>';
-    document.getElementById('OrderResult').innerHTML=text;
+    $('#FastOrderMainResult').html(text);
 }
 
-function LoadCustomer() {
-    fastOrderCustomer = document.getElementById('FastOrderCustomer').value;
-}
-
-function ShowCustomer() {
-
-    var select = '';
-    select += '<select id=FastOrderCustomer onChange=\'LoadCustomer()\'>';
+function ShowCustomer(targetID) {
+    var select = '<select id=FastOrderCustomer>';
     for (var i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i).indexOf(prefix_customer) != 0)
             continue;
         var name = localStorage.key(i).substring(prefix_customer.length);
         select += '<option value=\"'+name+'\">'+name+'</option>';
-        if (fastOrderCustomer == '') {
-            fastOrderCustomer = name;
-        }
     }
     select += '</select>';
-
-    var text = '';
-    text += '<table>';
-    text += '<tr><td>Customer: '+select+'</td></tr>';
+    var text = '<table><tr><th>Customer</th><th>Item</th><th>Amount</th></tr>';
+    text += '<tr><td>'+select+'</td><td id=FastOrderTotalItem>0</td><td id=FastOrderTotalAmount>0</td></tr>';
     text += '</table>';
-
-    document.getElementById('CustomerResult').innerHTML=text;
+    $('#FastOrderMainCustomer').html(text);
 }
 
 function GenRecordObj() {
@@ -107,7 +106,7 @@ function GenRecordObj() {
         }
     }
 
-    obj['customer'] = fastOrderCustomer;
+    obj['customer'] = $('#fastOrderCustomer').text();
     obj['date'] = getDateFormat();
     obj['count'] = count;
     obj['total'] = total;
