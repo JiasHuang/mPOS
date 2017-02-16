@@ -7,16 +7,17 @@ var mode = '';
 
 function addCode(key) {
 
-    element = document.getElementById(ref)
+    var element = $('#'+ref);
+    var tagName = element.prop("tagName");
 
     if (cnt === 0) {
         num = '';
         cnt++;
     } else {
-        if (element.tagName == 'INPUT') {
-            num = element.value;
+        if (tagName == 'INPUT') {
+            num = element.val();
         } else {
-            num = element.innerHTML;
+            num = element.text();
         }
     }
 
@@ -28,10 +29,10 @@ function addCode(key) {
 	    num = num + key;
     }
 
-    if (element.tagName == 'INPUT') {
-        element.value = num;
+    if (tagName == 'INPUT') {
+        element.val(num);
     } else {
-        element.innerHTML = num;
+        element.html(num);
     }
 }
 
@@ -46,15 +47,14 @@ function resetCode() {
 
 function switchTo(element) {
     var tagName = $(element).prop("tagName");
-    if (tagName == 'TR'){
+    if (tagName == 'TR') {
         ref = $(element).find('td:nth-child(2)')[0].id;
         $(element).children().css("background-color", "#999999");
         $(element).children().css("color", "#ffff00");
         $(element).siblings().children().css("background-color", "#666666");
         $(element).siblings().children().css("color", "#ffffff");
-    }
-    else if (tagName == 'TD'){
-        ref = $(element).id;
+    } else if (tagName == 'TD') {
+        ref = $(element).attr("alt");
         $(element).css("background-color", "#999999");
         $(element).css("color", "#ffff00");
         $(element).siblings().css("background-color", "#666666");
@@ -108,8 +108,8 @@ function numpad_init(obj) {
         } else {
             switch_text += '<table id=numpad>'
             switch_text += '<tr>'
-            switch_text += '<td onclick=switchTo(this)>Price</td>'
-            switch_text += '<td onclick=switchTo(this) class=hl>Qty</td>'
+            switch_text += '<td alt='+price+' onclick=switchTo(this)>Price</td>'
+            switch_text += '<td alt='+qty+' onclick=switchTo(this) class=hl>Qty</td>'
             switch_text += '</tr>'
             switch_text += '</table>'
         }
