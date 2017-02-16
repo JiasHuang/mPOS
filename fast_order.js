@@ -141,7 +141,7 @@ function SaveOrder_pass3(id) {
     text += '<td><a target="_blank" href=print.html#result?id='+id+'>PRINT</a></td>';
     text += '</tr></table>';
 
-    document.getElementById('FastOrderResult').innerHTML = text;
+    $('#FastOrderResult').html(text);
 
     $('#FastOrderMain').hide();
     $('#FastOrderMenuBar').hide();

@@ -24,9 +24,9 @@ function DelOrder() {
 
 function SaveEditOrder() {
 
-    var newname = document.getElementById('NewOrderName').value;
-    var newprice = document.getElementById('NewOrderPrice').value;
-    var newqty = document.getElementById('NewOrderQty').value;
+    var newname = $('#NewOrderName').val();
+    var newprice = $('#NewOrderPrice').val();
+    var newqty = $('#NewOrderQty').val();
 
     if (selectedOrderName != '' && selectedOrderName != newname) {
         sessionStorage.removeItem(prefix_order+selectedOrderName);
@@ -39,8 +39,8 @@ function SaveEditOrder() {
 }
 
 function LoadPrice() {
-    var name = document.getElementById('NewOrderName').value;
-    document.getElementById('NewOrderPrice').value = localStorage.getItem(prefix_item+name);
+    var name = $('#NewOrderName').val();
+    $('#NewOrderPrice').val(localStorage.getItem(prefix_item+name));
 }
 
 function EditOrder(selected) {
@@ -69,10 +69,10 @@ function EditOrder(selected) {
     text += '<tr><th>Qty</th><td><input type=text id=NewOrderQty \></td></tr>'
     text += '</table>';
 
-    document.getElementById('OrderResult').innerHTML=text;
-    document.getElementById('NewOrderName').value = selectedOrderName;
-    document.getElementById('NewOrderPrice').value = selectedOrderPrice;
-    document.getElementById('NewOrderQty').value = selectedOrderQty;
+    $('#OrderResult').html(text);
+    $('#NewOrderName').val(selectedOrderName);
+    $('#NewOrderPrice').val(selectedOrderPrice);
+    $('#NewOrderQty').val(selectedOrderQty);
 
     $('#CustomerResult').hide();
     $('#OrderEntry').hide();
@@ -120,14 +120,14 @@ function ShowOrder() {
     text += ' Item: '+count+' Total: '+total;
     text += '</td></tr></table>';
 
-    document.getElementById('OrderResult').innerHTML=text;
+    $('#OrderResult').html(text);
     $('#CustomerResult').show();
     $('#OrderEntry').show();
     $('#OrderEdit').hide();
 }
 
 function LoadCustomer() {
-    var value = document.getElementById('coCustomer').value;
+    var value = $('#coCustomer').val();
     sessionStorage.setItem('coCustomer', value);
 }
 
@@ -147,11 +147,11 @@ function ShowCustomer() {
     var text = '';
 
     text += '<table>';
-    text += '<tr><td>Customer: '+select+'</td></tr>';
+    text += '<tr><th>Customer</th><td>'+select+'</td></tr>';
     text += '</table>';
 
-    document.getElementById('CustomerResult').innerHTML=text;
-    document.getElementById('coCustomer').value = sessionStorage.getItem('coCustomer');
+    $('#CustomerResult').html(text);
+    $('#coCustomer').val(sessionStorage.getItem('coCustomer'));
 }
 
 function GenRecordObj() {
@@ -196,7 +196,7 @@ function ResetOrder() {
     for (var i = 0; i < list.length; i++)
         sessionStorage.removeItem(list[i]);
 
-    document.getElementById('coCustomer').value = '';
+    $('#coCustomer').val('');
 }
 
 function SaveOrder_pass3(id) {
@@ -224,7 +224,7 @@ function SaveOrder_pass3(id) {
     text += '<td><a target="_blank" href=print.html#result?id='+id+'>PRINT</a></td>';
     text += '</tr></table>';
 
-    document.getElementById('OrderResult').innerHTML = text;
+    $('#OrderResult').html(text);
 
     $('#CustomerResult').hide();
     $('#OrderEntry').hide();

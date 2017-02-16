@@ -143,7 +143,7 @@ function ShowPrint_ProcObj(obj) {
 
     text += '<hr><a href="com.fidelier.printfromweb://'+data+'">Android POS Print Driver</a><hr>';
 
-    document.getElementById('PrintResult').innerHTML=text;
+    $('#PrintResult').html(text);
 }
 
 function ShowPrint_GetObj() {

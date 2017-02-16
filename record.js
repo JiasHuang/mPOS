@@ -148,8 +148,8 @@ function SelectRecord(element) {
 }
 
 function LoadFilter() {
-    selectedFilterCustomer = document.getElementById('selectedFilterCustomer').value;
-    selectedFilter = document.getElementById('selectedFilter').value;
+    selectedFilterCustomer = $('#selectedFilterCustomer').val();
+    selectedFilter = $('#selectedFilter').val();
     ShowAllRecord();
 }
 
@@ -176,12 +176,12 @@ function ShowFilter() {
 
     var text = '';
     text += '<table>';
-    text += '<tr><td>Customer: '+selectCustomer+'</td></tr>';
-    text += '<tr><td>Filter: '+select+'</td></tr>';
+    text += '<tr><th>Customer</th><td>'+selectCustomer+'</td></tr>';
+    text += '<tr><th>Filter</th><td>'+select+'</td></tr>';
     text += '</table>';
 
-    document.getElementById('RecordFilter').innerHTML=text;
-    document.getElementById('selectedFilter').value = selectedFilter;
+    $('#RecordFilter').html(text);
+    $('#selectedFilter').val(selectedFilter);
 }
 
 function ShowAllObj(objs) {
@@ -212,7 +212,7 @@ function ShowAllObj(objs) {
     if (!objs.length)
         text += '<h1>No Jobs. Enjoy Your Days!!</h1>'
 
-    document.getElementById('RecordResult').innerHTML=text;
+    $('#RecordResult').html(text);
 
     $('#RecordFilter').show();
     $('#RecordEntry').show();
@@ -284,9 +284,9 @@ function EditObj(obj) {
     obj['count'] = count;
     obj['total'] = total;
 
-    document.getElementById('RecordResult').innerHTML=text;
-    document.getElementById('RecordShipped').value = obj['ship'];
-    document.getElementById('RecordPaid').value = obj['paid'];
+    $('#RecordResult').html(text);
+    $('#RecordShipped').val(obj['ship']);
+    $('#RecordPaid').val(obj['paid']);
 
     $('#RecordFilter').hide();
     $('#RecordEntry').hide();
@@ -309,8 +309,8 @@ function EditSelectedRecord() {
 }
 
 function LoadRecordItemPrice() {
-    var name = document.getElementById('NewRecordItemName').value;
-    document.getElementById('NewRecordItemPrice').value = localStorage.getItem(prefix_item+name);
+    var name = $('#NewRecordItemName').val();
+    $('#NewRecordItemPrice').val(localStorage.getItem(prefix_item+name));
 }
 
 function EditSelectedRecordItem(selected) {
@@ -350,10 +350,10 @@ function EditSelectedRecordItem(selected) {
 
     text += numpad({'qty':'NewRecordItemQty', 'price':'NewRecordItemPrice'});
 
-    document.getElementById('RecordResult').innerHTML=text;
-    document.getElementById('NewRecordItemName').value = selectedRecordItemName;
-    document.getElementById('NewRecordItemPrice').value = selectedRecordItemPrice;
-    document.getElementById('NewRecordItemQty').value = selectedRecordItemQty;
+    $('#RecordResult').html(text);
+    $('#NewRecordItemName').val(selectedRecordItemName);
+    $('#NewRecordItemPrice').val(selectedRecordItemPrice);
+    $('#NewRecordItemQty').val(selectedRecordItemQty);
 
     $('#RecordFilter').hide();
     $('#RecordEntry').hide();
@@ -364,17 +364,17 @@ function EditSelectedRecordItem(selected) {
 function SaveSelectedRecord() {
     var result = confirm("Want to Save?");
     if (result) {
-        selectedRecordObj['ship'] = document.getElementById('RecordShipped').value;
-        selectedRecordObj['paid'] = document.getElementById('RecordPaid').value;
+        selectedRecordObj['ship'] = $('#RecordShipped').val();
+        selectedRecordObj['paid'] = $('#RecordPaid').val();
         SaveRecordObj(selectedRecordObj, ShowAllRecord);
     }
 }
 
 function SaveSelectedRecordItem() {
 
-    var name = document.getElementById('NewRecordItemName').value;
-    var price = document.getElementById('NewRecordItemPrice').value;
-    var qty = document.getElementById('NewRecordItemQty').value;
+    var name = $('#NewRecordItemName').val();
+    var price = $('#NewRecordItemPrice').val();
+    var qty = $('#NewRecordItemQty').val();
 
     if (name == '' || price == '' || qty == '') {
         console.log('SaveSelectedRecordItem Error');

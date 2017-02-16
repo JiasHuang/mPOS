@@ -37,11 +37,12 @@ function addCode(key) {
 }
 
 function resetCode() {
-    element = document.getElementById(ref)
-    if (element.tagName == 'INPUT') {
-        element.value = '0'
+    var element = $('#'+ref);
+    var tagName = element.prop("tagName");
+    if (tagName == 'INPUT') {
+        element.val(0);
     } else {
-        element.innerHTML = '0';
+        element.html(0);
     }
 }
 

@@ -23,15 +23,15 @@ function DelCustomer() {
 
 function SaveCustomer() {
 
-    var newname = document.getElementById('NewCustomerName').value;
-    var newphone = document.getElementById('NewCustomerPhone').value;
+    var newname = $('#NewCustomerName').val();
+    var newphone = $('#NewCustomerPhone').val();
 
     if (selectedCustomerName != '' && selectedCustomerName != newname) {
         localStorage.removeItem(prefix_customer+selectedCustomerName);
     }
 
-    selectedCustomerName = document.getElementById('NewCustomerName').value;
-    selectedCustomerPhone = document.getElementById('NewCustomerPhone').value;
+    selectedCustomerName = newname;
+    selectedCustomerPhone = newphone;
     AddSelectedCustomer();
 }
 
@@ -46,9 +46,9 @@ function EditCustomer(selected) {
     text += '<tr><th>Customer Name</th><td><input type=text id=NewCustomerName \></td></tr>'
     text += '<tr><th>Customer Phone</th><td><input type=text id=NewCustomerPhone \></td></tr>'
     text += '</table>';
-    document.getElementById('CustomerResult').innerHTML = text;
-    document.getElementById('NewCustomerName').value = selectedCustomerName;
-    document.getElementById('NewCustomerPhone').value = selectedCustomerPhone;
+    $('#CustomerResult').html(text);
+    $('#NewCustomerName').val(selectedCustomerName);
+    $('#NewCustomerPhone').val(selectedCustomerPhone);
     $('#CustomerEntry').hide();
     $('#CustomerEdit').show();
 }
@@ -78,7 +78,7 @@ function ShowCustomer() {
     }
     text += '</table>';
 
-    document.getElementById('CustomerResult').innerHTML=text;
+    $('#CustomerResult').html(text);
     $('#CustomerEntry').show();
     $('#CustomerEdit').hide();
 }

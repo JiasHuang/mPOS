@@ -23,8 +23,8 @@ function DelItem() {
 
 function SaveItem() {
 
-    var name = document.getElementById('NewItemName').value;
-    var price = document.getElementById('NewItemPrice').value;
+    var name = $('#NewItemName').val();
+    var price = $('#NewItemPrice').val();
 
     if (selectedItemName != '' && selectedItemName != name) {
         localStorage.removeItem(prefix_item+selectedItemName);
@@ -50,9 +50,9 @@ function EditItem(selected) {
     text += '</table>';
     text += numpad({'price':'NewItemPrice'});
 
-    document.getElementById('ItemResult').innerHTML=text;
-    document.getElementById('NewItemName').value = selectedItemName;
-    document.getElementById('NewItemPrice').value = selectedItemPrice;
+    $('#ItemResult').html(text);
+    $('#NewItemName').val(selectedItemName);
+    $('#NewItemPrice').val(selectedItemPrice);
 
     $('#ItemEntry').hide();
     $('#ItemEdit').show();
@@ -81,9 +81,9 @@ function ShowItem() {
         text += '<td>'+price+'</td>';
         text += '</tr>';
     }
-    text = text + '</table>';
+    text += '</table>';
 
-    document.getElementById('ItemResult').innerHTML=text;
+    $('#ItemResult').html(text);
     $('#ItemEntry').show();
     $('#ItemEdit').hide();
 }

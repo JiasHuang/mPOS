@@ -1,8 +1,8 @@
 
 function SaveConfig() {
-    localStorage.setItem(coName, document.getElementById('ConfigName').value);
-    localStorage.setItem(coPhone, document.getElementById('ConfigPhone').value);
-    localStorage.setItem(coAddr, document.getElementById('ConfigAddr').value);
+    localStorage.setItem(coName, $('#ConfigName').val());
+    localStorage.setItem(coPhone, $('#ConfigPhone').val());
+    localStorage.setItem(coAddr, $('#ConfigAddr').val());
     ShowConfig();
 }
 
@@ -19,10 +19,10 @@ function EditConfig() {
     text += '<tr><th>My Addr</th><td><input type=text id=ConfigAddr \></td></tr>'
     text += '</table>';
 
-    document.getElementById('ConfigResult').innerHTML=text;
-    document.getElementById('ConfigName').value=name;
-    document.getElementById('ConfigPhone').value=phone;
-    document.getElementById('ConfigAddr').value=addr;
+    $('#ConfigResult').html(text);
+    $('#ConfigName').val(name);
+    $('#ConfigPhone').val(phone);
+    $('#ConfigAddr').val(addr);
     $('#ConfigEntry').hide();
     $('#ConfigEdit').show();
 }
@@ -46,7 +46,7 @@ function ShowConfig() {
     text += '<tr><th>My Addr</th><td>'+addr+'</td></tr>';
     text += '</table>';
 
-    document.getElementById('ConfigResult').innerHTML=text;
+    $('#ConfigResult').html(text);
     $('#ConfigEntry').show();
     $('#ConfigEdit').hide();
 }
