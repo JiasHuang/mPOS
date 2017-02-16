@@ -49,16 +49,12 @@ function switchTo(element) {
     var tagName = $(element).prop("tagName");
     if (tagName == 'TR') {
         ref = $(element).find('td:nth-child(2)')[0].id;
-        $(element).children().css("background-color", "#999999");
-        $(element).children().css("color", "#ffff00");
-        $(element).siblings().children().css("background-color", "#666666");
-        $(element).siblings().children().css("color", "#ffffff");
+        $(element).children().addClass("hl");
+        $(element).siblings().children().removeClass("hl");
     } else if (tagName == 'TD') {
         ref = $(element).attr("alt");
-        $(element).css("background-color", "#999999");
-        $(element).css("color", "#ffff00");
-        $(element).siblings().css("background-color", "#666666");
-        $(element).siblings().css("color", "#ffffff");
+        $(element).addClass("hl");
+        $(element).siblings().removeClass("hl");
     }
     cnt = 0;
 }

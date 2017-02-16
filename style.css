@@ -25,7 +25,7 @@ th {
     padding-bottom: 12px;
     background-color: #4CAF50;
     color: white;
-    font-size:32px;
+    font-size:48px;
 }
 
 th.total {
@@ -34,21 +34,21 @@ th.total {
     padding-bottom: 12px;
     background-color: #4CAF50;
     color: white;
-    font-size:32px;
+    font-size:48px;
 }
 
 td {
-    font-size:32px;
+    font-size:48px;
 }
 
 input {
     width: 100%;
-    font-size: 32px;
+    font-size: 48px;
 }
 
 select {
     width: 100%;
-    font-size: 32px;
+    font-size: 48px;
 }
 
 .space {
@@ -109,11 +109,9 @@ select {
     padding: 8px;
 }
 
-.fixedCenter {
+.fixedTopRight {
     position: fixed;
-    top: 10%;
-    right:0%;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: rgba(0, 0, 0, 0.1);
+    top:16px;
+    right:16px;
+    background-color: white;
 }

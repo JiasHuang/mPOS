@@ -1,29 +1,30 @@
 
 #numpad {
     margin:auto;
-    margin-top:8px;
+    border-spacing:5px;
+    border-collapse: separate;
 }
 
 #numpad tr td {
     vertical-align:middle;
     text-align:center;
-    border:1px solid #000000;
+    border:5px solid #000000;
     font-size:72px;
     font-weight:bold;
     width:240px;
     height:120px;
     cursor:pointer;
-    background-color:#666666;
+    background-color:#808080;
     color:#ffffff;
 }
 
 #numpad tr td:hover {
-    background-color:#999999;
     color:#FFFF00;
+    background-color:#F08080;
 }
 
 #numpad tr td.hl {
-    background-color:#999999;
     color:#FFFF00;
+    background-color:#F08080;
 }
 
