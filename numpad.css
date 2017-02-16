@@ -19,12 +19,12 @@
 }
 
 #numpad tr td:hover {
-    color:#FFFF00;
-    background-color:#F08080;
+    color:#000000;
+    background-color:#FFCF8B;
 }
 
 #numpad tr td.hl {
-    color:#FFFF00;
-    background-color:#F08080;
+    color:#000000;
+    background-color:#FFCF8B;
 }
 
