@@ -1,8 +1,6 @@
 
 var ref = '';
 var cnt = 0;
-var head = '';
-var tail = '';
 var mode = '';
 
 function addCode(key) {
@@ -76,13 +74,7 @@ function numpad_init(obj) {
     if (obj.hasOwnProperty('qty')) {
         qty = obj['qty'];
     }
-    if (obj.hasOwnProperty('head')) {
-        head = obj['head'];
-    }
-    if (obj.hasOwnProperty('tail')) {
-        tail = obj['tail'];
-    }
-    if (obj.hasOwnProperty('tail')) {
+    if (obj.hasOwnProperty('mode')) {
         mode = obj['mode'];
     }
     if (obj.hasOwnProperty('defPrice')) {
@@ -125,7 +117,6 @@ function numpad(obj) {
     var switch_text = numpad_init(obj);
     var text = '';
 
-    text += head;
     text += switch_text;
     text += '<table id=numpad>'
     text += '<tr>'
@@ -149,7 +140,6 @@ function numpad(obj) {
     text += '<td onclick=addCode(".")>.</td>'
     text += '</tr>'
     text += '</table>'
-    text += tail;
 
     return text
 }

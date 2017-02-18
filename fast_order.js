@@ -44,10 +44,10 @@ function EditPriceQty(i) {
     var price = $(element+'_price').text()
     var qty = $(element+'_qty').text()
     var head = '<table id=numpad><tr><td>'+name+'</td></tr></table>';
+    var text = numpad({'price':'EditPrice', 'qty':'EditQty', 'mode':'1', 'defPrice':price, 'defQty':qty});
     var tail = '<table id=numpad><tr><td onclick=OnEventCancel()>CANCEL</td><td onclick=OnEventSave('+i+')>SAVE</td></tr></table>';
-    var text = numpad({'price':'EditPrice', 'qty':'EditQty', 'head':head, 'tail':tail, 'mode':'1', 'defPrice':price, 'defQty':qty});
     $(element).addClass('selected').siblings().removeClass('selected');
-    $('#FastOrderEdit').html(text);
+    $('#FastOrderEdit').html(head+text+tail);
     $('#FastOrderEdit').show();
 }
 
