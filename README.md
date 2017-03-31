@@ -5,7 +5,7 @@
 - using IndexDB as DataBase
 
 # Website
-[https://jiashuang.github.io](https://jiashuang.github.io)
+[https://jiashuang.github.io/mPOS](https://jiashuang.github.io/mPOS)
 
 # Requirement
 
